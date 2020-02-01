@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Gancho.ogg-9b8a202fcaddadaf29e91a5f42c47568.oggstr"
+
+[deps]
+
+source_file="res://ROBOFIND audios/Gancho.ogg"
+dest_files=[ "res://.import/Gancho.ogg-9b8a202fcaddadaf29e91a5f42c47568.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

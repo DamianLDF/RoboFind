@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Ambiente final.ogg-428acd225ba4fa42aea6d23616a93d28.oggstr"
+
+[deps]
+
+source_file="res://ROBOFIND audios/Ambiente final.ogg"
+dest_files=[ "res://.import/Ambiente final.ogg-428acd225ba4fa42aea6d23616a93d28.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

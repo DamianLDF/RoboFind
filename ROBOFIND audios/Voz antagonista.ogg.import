@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Voz antagonista.ogg-aa80b56859d8bc335913913798f0be39.oggstr"
+
+[deps]
+
+source_file="res://ROBOFIND audios/Voz antagonista.ogg"
+dest_files=[ "res://.import/Voz antagonista.ogg-aa80b56859d8bc335913913798f0be39.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Nuevo proyecto de juego"
+config/name="Robot Find"
 config/icon="res://icon.png"
 
 [rendering]

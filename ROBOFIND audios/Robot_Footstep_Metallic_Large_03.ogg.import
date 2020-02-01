@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Robot_Footstep_Metallic_Large_03.ogg-ae4e1dfb0927a8ba1714e67d866431d4.oggstr"
+
+[deps]
+
+source_file="res://ROBOFIND audios/Robot_Footstep_Metallic_Large_03.ogg"
+dest_files=[ "res://.import/Robot_Footstep_Metallic_Large_03.ogg-ae4e1dfb0927a8ba1714e67d866431d4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
