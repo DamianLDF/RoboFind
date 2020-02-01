@@ -4,10 +4,15 @@ extends RigidBody2D
 # var a = 2
 # var b = "text"
 export (int) var Velocidad
-onready var seVaACaer = get_node("RayCast2D")
+onready var ChequeoDeBorde = get_node("Node2D/ChequeoDeBorde")
+onready var ChequeoDePared = get_node("Node2D/ChequeoDePared")
+onready var Vista = get_node("Vista")
 var movimiento = Vector2.LEFT
 var flip = 1
 var flipImagen = true
+                                                          
+var textura_normal = preload("res://img/enemigo_terrestre2.png")
+var textura_ataque = preload("res://img/enemigo_terrestre2ataque.png")
 # Called when the node enters the scene tree for the first time.
 
 
@@ -17,22 +22,29 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _process(delta):
-	
-	if not seVaACaer.is_colliding():
+	if not ChequeoDeBorde.is_colliding() or ChequeoDePared.is_colliding() :
 		if movimiento == Vector2.LEFT:
 			movimiento = Vector2.RIGHT
 		else:
 			movimiento = Vector2.LEFT
 	
-		get_node("Sprite").set_flip_h(flipImagen)
-		flipImagen = !flipImagen
+		$Node2D.apply_scale(Vector2(-1,1))
 		
-		seVaACaer.position = Vector2(seVaACaer.position.x + flip*200, seVaACaer.position.y)
 		flip *= -1
 
 	if -200 < self.linear_velocity.x  and self.linear_velocity.x < 200 :
 		self.apply_central_impulse(movimiento*delta*2000)
+		
+	for body in  $Node2D/ChequeoDePlayer.get_overlapping_bodies():
+		if body.name == "Player":
+			self.apply_central_impulse(movimiento*delta*3000)
+			$Node2D/Sprite.set_texture(textura_ataque)
+		else:
+			$Node2D/Sprite.set_texture(textura_normal)
+		
+		
 
 
 func _on_Area2D_body_entered(body):
 	self.queue_free()
+
