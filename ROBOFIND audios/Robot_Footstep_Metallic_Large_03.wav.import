@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Robot_Footstep_Metallic_Large_03.wav-41e7548c495a6d15cceff9d55a6ea404.sample"
+
+[deps]
+
+source_file="res://ROBOFIND audios/Robot_Footstep_Metallic_Large_03.wav"
+dest_files=[ "res://.import/Robot_Footstep_Metallic_Large_03.wav-41e7548c495a6d15cceff9d55a6ea404.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

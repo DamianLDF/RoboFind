@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Jefe Final V1.ogg-debb568bf03fb6c8f665f7049aa8407a.oggstr"
+
+[deps]
+
+source_file="res://ROBOFIND audios/Jefe Final V1.ogg"
+dest_files=[ "res://.import/Jefe Final V1.ogg-debb568bf03fb6c8f665f7049aa8407a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
