@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://TorsoPowerUp.gd" type="Script" id=1]
+[ext_resource path="res://img/torso.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+height = 7.08154
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 34.2048, 25.0317 )
+
+[node name="TorsoPowerUp" type="RigidBody2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 16.9403, -11.2935 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 2 )
+
+[node name="Rosca" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rosca"]
+position = Vector2( 0, -45.6875 )
+rotation = -1.55339
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -10.2668 )
+shape = SubResource( 2 )
+[connection signal="body_entered" from="Rosca" to="." method="_on_Rosca_body_entered"]
