@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Nivel3.gd" type="Script" id=1]
 [ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Enemigo.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ROBOFIND audios/Ambiente final.ogg" type="AudioStream" id=10]
 [ext_resource path="res://ROBOFIND audios/Jefe Final V2 bajo.ogg" type="AudioStream" id=11]
+[ext_resource path="res://EnemigoFinal.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 253.921, 252.605 )
@@ -42,7 +43,7 @@ tile_data = PoolIntArray( -4194351, 3, 0, -4194350, 3, 0, -4194349, 3, 0, -41943
 [node name="HUD" parent="." instance=ExtResource( 6 )]
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( -1522.23, -2040.1 )
+position = Vector2( 305.777, 475.078 )
 
 [node name="Enemigos" type="Node2D" parent="."]
 
@@ -97,6 +98,9 @@ position = Vector2( -2712.98, -650.523 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossArea"]
 shape = SubResource( 1 )
+
+[node name="EnemigoFinal" parent="." instance=ExtResource( 12 )]
+position = Vector2( -1307.29, 250.236 )
 [connection signal="cambia_vida" from="Player" to="." method="_on_Player_cambia_vida"]
 [connection signal="body_entered" from="BossArea" to="." method="_on_BossArea_body_entered"]
 

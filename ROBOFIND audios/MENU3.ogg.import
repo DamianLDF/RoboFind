@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MENU3.ogg-e71607c3f9d3cc4a1bc54cbf670c400e.oggstr"
+
+[deps]
+
+source_file="res://ROBOFIND audios/MENU3.ogg"
+dest_files=[ "res://.import/MENU3.ogg-e71607c3f9d3cc4a1bc54cbf670c400e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
