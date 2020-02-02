@@ -18,29 +18,32 @@ tile_data = PoolIntArray( 40, 0, 0, 41, 0, 0, 65575, 0, 0, 65576, 0, 0, 65577, 0
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 
-[node name="Enemigo" parent="." instance=ExtResource( 5 )]
+[node name="Node2D" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="Enemigo" parent="Node2D" instance=ExtResource( 5 )]
 position = Vector2( 1933.39, 1431.85 )
 
-[node name="Enemigo3" parent="." instance=ExtResource( 5 )]
+[node name="Enemigo3" parent="Node2D" instance=ExtResource( 5 )]
 position = Vector2( 615.087, 2636.07 )
 
-[node name="Enemigo4" parent="." instance=ExtResource( 5 )]
+[node name="Enemigo4" parent="Node2D" instance=ExtResource( 5 )]
 position = Vector2( 893.958, 2636.07 )
 
-[node name="Enemigo5" parent="." instance=ExtResource( 5 )]
+[node name="Enemigo5" parent="Node2D" instance=ExtResource( 5 )]
 position = Vector2( 1115.79, 2610.72 )
 
-[node name="Enemigo6" parent="." instance=ExtResource( 5 )]
+[node name="Enemigo6" parent="Node2D" instance=ExtResource( 5 )]
 position = Vector2( 5435.35, 1758.43 )
 
-[node name="Enemigo8" parent="." instance=ExtResource( 5 )]
+[node name="Enemigo8" parent="Node2D" instance=ExtResource( 5 )]
 position = Vector2( 6242.61, 624.269 )
 
-[node name="Enemigo9" parent="." instance=ExtResource( 5 )]
+[node name="Enemigo9" parent="Node2D" instance=ExtResource( 5 )]
 position = Vector2( 6769.67, 477.495 )
 
-[node name="Enemigo7" parent="." instance=ExtResource( 5 )]
+[node name="Enemigo7" parent="Node2D" instance=ExtResource( 5 )]
 position = Vector2( 5297.12, 2330.44 )
 
-[node name="Enemigo2" parent="." instance=ExtResource( 5 )]
+[node name="Enemigo2" parent="Node2D" instance=ExtResource( 5 )]
 position = Vector2( 802.126, 1444.22 )

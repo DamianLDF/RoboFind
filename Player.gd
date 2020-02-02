@@ -24,6 +24,15 @@ func _integrate_forces(state):
 			if $GroundTouch.is_colliding():
 	#		if state.get_contact_count() > 0:
 				apply_central_impulse(Vector2.UP * fuerza_salto)
+				
+	if Input.is_action_just_pressed("game_attack"):
+		if tipo == Tipo.TORSO:
+			for body in $AtaqueTorso.get_overlapping_bodies():
+				if body.name.begins_with("Enemigo"):
+					body.atacado()
+				
+		elif tipo == Tipo.COMPLETO:
+			pass
 		
 	if Input.is_action_just_pressed("test_cabeza"):
 		state_machine.travel("cabeza")
