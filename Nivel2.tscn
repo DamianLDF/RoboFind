@@ -32,7 +32,6 @@ tile_data = PoolIntArray( 40, 0, 0, 41, 0, 0, 65575, 0, 0, 65576, 0, 0, 65577, 0
 [node name="Player" parent="." instance=ExtResource( 5 )]
 
 [node name="Node2D" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Enemigo" parent="Node2D" instance=ExtResource( 6 )]
 position = Vector2( 1933.39, 1431.85 )
@@ -63,3 +62,9 @@ position = Vector2( 802.126, 1444.22 )
 
 [node name="EnemigoVolador" parent="Node2D" instance=ExtResource( 7 )]
 position = Vector2( 3940.22, 1450.11 )
+
+[node name="EnemigoVolador2" parent="Node2D" instance=ExtResource( 7 )]
+position = Vector2( 1120.07, 85.1847 )
+
+[node name="EnemigoVolador3" parent="Node2D" instance=ExtResource( 7 )]
+position = Vector2( 2238.23, 150.411 )
