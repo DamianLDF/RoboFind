@@ -53,8 +53,9 @@ func _process(delta):
 				body.fueGolpeado()
 func fueGolpeado():
 	$Node2D/SpriteExplosion.show()
-	yield(get_tree().create_timer(0.2), "timeout")
-	self.queue_free()
+	$Node2D/SonidoExplosion.play()
+	yield(get_tree().create_timer(0.5), "timeout")
+	call_deferred("queue_free")
 	emit_signal("murio")
 
 func _on_Area2D_body_entered(body):

@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Enemigo.gd" type="Script" id=1]
 [ext_resource path="res://img/enemigo_terrestre2.png" type="Texture" id=2]
 [ext_resource path="res://img/enemigo_terrestre2ataque.png" type="Texture" id=3]
 [ext_resource path="res://img/explosion.png" type="Texture" id=4]
+[ext_resource path="res://ROBOFIND audios/explosion.ogg" type="AudioStream" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -25,14 +26,14 @@ b = Vector2( 0.960144, 9.06708 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 194.437, 84.582 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 custom_solver_bias = 1.0
 extents = Vector2( 6.17578, 69.6567 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 68.5175, 15.3157 )
 
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=6]
 radius = 75.4824
 height = 8.87476
 
@@ -90,15 +91,18 @@ shape = SubResource( 3 )
 
 [node name="ColisionAtaque1" type="CollisionShape2D" parent="Node2D/AreaDeAtaque"]
 position = Vector2( -67.1611, 5.98996 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="ColisionAtaque2" type="CollisionShape2D" parent="Node2D/AreaDeAtaque"]
 position = Vector2( -0.677673, 70.0401 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
+
+[node name="SonidoExplosion" type="AudioStreamPlayer" parent="Node2D"]
+stream = ExtResource( 5 )
 
 [node name="ColisicionCuerpo" type="CollisionShape2D" parent="."]
 position = Vector2( 0.257569, 3.31531 )
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }

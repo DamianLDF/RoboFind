@@ -36,7 +36,8 @@ func _process(delta):
 #				print("Nombre del Objeto que colisiono: ", body.name)
 				if body.name == "Player":
 					body.fueGolpeado()
-				
+					
+			
 			call_deferred("queue_free")
 		
 		
