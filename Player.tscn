@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://img/cabezatest.png" type="Texture" id=2]
@@ -289,21 +289,25 @@ animation = "torso"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-
-[sub_resource type="AnimationNodeStateMachine" id=15]
+[sub_resource type="AnimationNodeStateMachine" id=14]
 states/cabeza/node = SubResource( 8 )
 states/cabeza/position = Vector2( 113, 64 )
 states/completo/node = SubResource( 9 )
 states/completo/position = Vector2( 596, 64 )
 states/torso/node = SubResource( 10 )
 states/torso/position = Vector2( 360, 64 )
-transitions = [ "cabeza", "torso", SubResource( 11 ), "torso", "completo", SubResource( 13 ), "completo", "torso", SubResource( 14 ) ]
+transitions = [ "cabeza", "torso", SubResource( 11 ), "torso", "completo", SubResource( 12 ), "completo", "torso", SubResource( 13 ) ]
 start_node = "cabeza"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+
+[sub_resource type="CapsuleShape2D" id=16]
+radius = 25.4716
+height = 43.0955
 
 [node name="Player" type="RigidBody2D"]
 physics_material_override = SubResource( 1 )
@@ -315,32 +319,16 @@ script = ExtResource( 1 )
 [node name="Cabeza" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="Cabeza"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
-
 [node name="Torso" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 3.9816, -33.5592 )
 shape = SubResource( 3 )
 disabled = true
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Torso"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
 
 [node name="Completo" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 2.27519, -98.9712 )
 shape = SubResource( 4 )
 disabled = true
-
-[node name="Sprite" type="Sprite" parent="Completo"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -351,12 +339,37 @@ anims/completo = SubResource( 6 )
 anims/torso = SubResource( 7 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 15 )
+tree_root = SubResource( 14 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 16 )
+parameters/playback = SubResource( 15 )
 
 [node name="GroundTouch" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 26 )
 collide_with_areas = true
+
+[node name="AtaqueTorso" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AtaqueTorso"]
+position = Vector2( 72.491, -28.5077 )
+rotation = -1.5735
+shape = SubResource( 16 )
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Cabeza" type="Sprite" parent="Sprites"]
+visible = false
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Torso" type="Sprite" parent="Sprites"]
+position = Vector2( 3.9816, -33.5592 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Sprites"]
+visible = false
+position = Vector2( 2.27519, -98.9712 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
