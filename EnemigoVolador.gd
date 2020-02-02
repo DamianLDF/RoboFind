@@ -23,6 +23,8 @@ func _ready():
 	
 	add_child(darVueltaTiming)
 	darVueltaTiming.start()
+	
+	$Node2D/SpriteExplosion.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func flipCharacter():
@@ -64,6 +66,8 @@ func _process(delta):
 		
 		
 func fueGolpeado():
+	$Node2D/SpriteExplosion.show()
+	yield(get_tree().create_timer(0.2), "timeout")
 	self.queue_free()
 	emit_signal("murio")
 

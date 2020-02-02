@@ -11,13 +11,13 @@ var movimiento = Vector2.LEFT
 var flip = 1
 var flipImagen = true
                                                           
-var textura_normal = preload("res://img/enemigo_terrestre2.png")
-var textura_ataque = preload("res://img/enemigo_terrestre2ataque.png")
+var textura_normal = "normal"
+var textura_ataque = "ataque"
 # Called when the node enters the scene tree for the first time.
 
 
 func _ready():
-	pass # Replace with function body.
+	$Node2D/SpriteExplosion.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -38,13 +38,15 @@ func _process(delta):
 	for body in  $Node2D/ChequeoDePlayer.get_overlapping_bodies():
 		if body.name == "Player":
 			self.apply_central_impulse(movimiento*delta*3000)
-			$Node2D/Sprite.set_texture(textura_ataque)
+			$Node2D/Sprite.set_animation(textura_ataque)
 			break
 		else:
-			$Node2D/Sprite.set_texture(textura_normal)
+			$Node2D/Sprite.set_animation(textura_normal)
 		
 		
 func fueGolpeado():
+	$Node2D/SpriteExplosion.show()
+	yield(get_tree().create_timer(0.2), "timeout")
 	self.queue_free()
 	emit_signal("murio")
 

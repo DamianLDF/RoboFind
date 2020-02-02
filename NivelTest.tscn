@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://NivelTest.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemigo.tscn" type="PackedScene" id=6]
 [ext_resource path="res://EnemigoVolador.tscn" type="PackedScene" id=7]
+[ext_resource path="res://EnemigoFinal.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -79,7 +80,10 @@ tile_data = PoolIntArray( 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0
 position = Vector2( 78.4986, 155.327 )
 
 [node name="Enemigo" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1292.45, 255.897 )
+position = Vector2( 298.217, 400.099 )
 
 [node name="EnemigoVolador" parent="." instance=ExtResource( 7 )]
-position = Vector2( 14.3303, 38.3005 )
+position = Vector2( -251.304, 7.94222 )
+
+[node name="Node2D" parent="." instance=ExtResource( 8 )]
+position = Vector2( -1075.69, 95.5096 )
