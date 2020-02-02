@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Laser.gd" type="Script" id=1]
 [ext_resource path="res://img/laser.png" type="Texture" id=2]
@@ -7,8 +7,12 @@
 radius = 2.53387
 height = 88.9746
 
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 4.31116
+height = 116.453
+
 [node name="Laser" type="KinematicBody2D"]
-position = Vector2( 572.99, 325.902 )
+position = Vector2( 574.041, 324.329 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -20,3 +24,10 @@ texture = ExtResource( 2 )
 position = Vector2( -1.75183, -10.944 )
 rotation = 1.57079
 shape = SubResource( 1 )
+
+[node name="AreaDeAtaque" type="Area2D" parent="."]
+
+[node name="ColisionDeAtaque" type="CollisionShape2D" parent="AreaDeAtaque"]
+position = Vector2( -1.58405, -10.7166 )
+rotation = 1.5708
+shape = SubResource( 2 )

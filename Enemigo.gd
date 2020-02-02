@@ -6,6 +6,7 @@ signal murio
 export (int) var Velocidad
 onready var ChequeoDeBorde = get_node("Node2D/ChequeoDeBorde")
 onready var ChequeoDePared = get_node("Node2D/ChequeoDePared")
+onready var ChequeoDePiso = get_node("Node2D/ChequeoDePiso")
 onready var Vista = get_node("Vista")
 var movimiento = Vector2.LEFT
 var flip = 1
@@ -23,14 +24,15 @@ func _ready():
 
 func _process(delta):
 	if not ChequeoDeBorde.is_colliding() or ChequeoDePared.is_colliding():
-		if movimiento == Vector2.LEFT:
-			movimiento = Vector2.RIGHT
-		else:
-			movimiento = Vector2.LEFT
-	
-		$Node2D.apply_scale(Vector2(-1,1))
+		if ChequeoDePiso.is_colliding():
+			if movimiento == Vector2.LEFT:
+				movimiento = Vector2.RIGHT
+			else:
+				movimiento = Vector2.LEFT
 		
-		flip *= -1
+			$Node2D.apply_scale(Vector2(-1,1))
+			
+			flip *= -1
 
 	if -200 < self.linear_velocity.x  and self.linear_velocity.x < 200 :
 		self.apply_central_impulse(movimiento*delta*2000)
@@ -42,8 +44,13 @@ func _process(delta):
 			break
 		else:
 			$Node2D/Sprite.set_animation(textura_normal)
-		
-		
+	
+#	for i in range( $Node2D/AreaDeAtaque.get_child_count()):
+#		var colision = $Node2D/AreaDeAtaque.get_child(i)
+#		for body in colision.get_overlapping_bodies():
+		for body in  $Node2D/AreaDeAtaque.get_overlapping_bodies():
+			if body.name == "Player":
+				body.fueGolpeado()
 func fueGolpeado():
 	$Node2D/SpriteExplosion.show()
 	yield(get_tree().create_timer(0.2), "timeout")

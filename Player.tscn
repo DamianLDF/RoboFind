@@ -3,24 +3,24 @@
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://img/cabeza.png" type="Texture" id=2]
 [ext_resource path="res://img/torso1.png" type="Texture" id=3]
-[ext_resource path="res://img/crawl1.png" type="Texture" id=4]
-[ext_resource path="res://img/crawl2.png" type="Texture" id=5]
-[ext_resource path="res://img/crawl3.png" type="Texture" id=6]
-[ext_resource path="res://img/crawl4.png" type="Texture" id=7]
-[ext_resource path="res://img/torsojump.png" type="Texture" id=8]
-[ext_resource path="res://img/torsohurt.png" type="Texture" id=9]
+[ext_resource path="res://img/torsojump.png" type="Texture" id=4]
+[ext_resource path="res://img/torsohurt.png" type="Texture" id=5]
+[ext_resource path="res://img/crawl1.png" type="Texture" id=6]
+[ext_resource path="res://img/crawl2.png" type="Texture" id=7]
+[ext_resource path="res://img/crawl3.png" type="Texture" id=8]
+[ext_resource path="res://img/crawl4.png" type="Texture" id=9]
 [ext_resource path="res://img/punch1.png" type="Texture" id=10]
 [ext_resource path="res://img/punch2.png" type="Texture" id=11]
 [ext_resource path="res://img/punch3.png" type="Texture" id=12]
 [ext_resource path="res://img/robotidle1.png" type="Texture" id=13]
 [ext_resource path="res://img/idle2.png" type="Texture" id=14]
 [ext_resource path="res://img/idle3.png" type="Texture" id=15]
-[ext_resource path="res://img/walk1.png" type="Texture" id=16]
-[ext_resource path="res://img/walk2.png" type="Texture" id=17]
-[ext_resource path="res://img/walk3.png" type="Texture" id=18]
-[ext_resource path="res://img/walk4.png" type="Texture" id=19]
-[ext_resource path="res://img/jump.png" type="Texture" id=20]
-[ext_resource path="res://img/hit.png" type="Texture" id=21]
+[ext_resource path="res://img/jump.png" type="Texture" id=16]
+[ext_resource path="res://img/hit.png" type="Texture" id=17]
+[ext_resource path="res://img/walk1.png" type="Texture" id=18]
+[ext_resource path="res://img/walk2.png" type="Texture" id=19]
+[ext_resource path="res://img/walk3.png" type="Texture" id=20]
+[ext_resource path="res://img/walk4.png" type="Texture" id=21]
 [ext_resource path="res://img/fall.png" type="Texture" id=22]
 [ext_resource path="res://img/kick1.png" type="Texture" id=23]
 [ext_resource path="res://img/kick2.png" type="Texture" id=24]
@@ -29,31 +29,31 @@
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.2
 
-[sub_resource type="CapsuleShape2D" id=16]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 25.4716
 height = 43.0955
 
-[sub_resource type="SpriteFrames" id=17]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "crawl",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "hurt",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "crawl",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 10 ) ],
 "loop": true,
@@ -61,26 +61,26 @@ animations = [ {
 "speed": 14.0
 } ]
 
-[sub_resource type="SpriteFrames" id=18]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "idle",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 20 ) ],
+"frames": [ ExtResource( 16 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 21 ) ],
+"frames": [ ExtResource( 17 ) ],
 "loop": true,
 "name": "hurt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "walk",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ) ],
@@ -94,18 +94,18 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=5]
 radius = 19.8923
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=6]
 radius = 33.4582
 height = 37.8386
 
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=7]
 radius = 29.6389
 height = 187.212
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Cabeza:disabled")
 tracks/0/interp = 1
@@ -203,8 +203,7 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "completo"
+[sub_resource type="Animation" id=9]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Completo:disabled")
 tracks/0/interp = 1
@@ -290,7 +289,7 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=10]
 resource_name = "crawl"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Flippables/Torso:animation")
@@ -305,7 +304,7 @@ tracks/0/keys = {
 "values": [ "crawl" ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=11]
 resource_name = "golpe"
 length = 0.5
 tracks/0/type = "value"
@@ -333,7 +332,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=12]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:mode")
 tracks/0/interp = 1
@@ -443,42 +442,42 @@ tracks/8/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "cabeza"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "completo"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "golpe"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "torso"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id=14]
-states/cabeza/node = SubResource( 8 )
+[sub_resource type="AnimationNodeStateMachine" id=22]
+states/cabeza/node = SubResource( 13 )
 states/cabeza/position = Vector2( 113, 64 )
-states/completo/node = SubResource( 9 )
+states/completo/node = SubResource( 14 )
 states/completo/position = Vector2( 596, 64 )
-states/golpe/node = SubResource( 21 )
+states/golpe/node = SubResource( 15 )
 states/golpe/position = Vector2( 292, 182 )
-states/torso/node = SubResource( 10 )
+states/torso/node = SubResource( 16 )
 states/torso/position = Vector2( 360, 64 )
-transitions = [ "cabeza", "torso", SubResource( 11 ), "torso", "completo", SubResource( 12 ), "completo", "torso", SubResource( 13 ), "torso", "golpe", SubResource( 22 ), "golpe", "torso", SubResource( 23 ) ]
+transitions = [ "cabeza", "torso", SubResource( 17 ), "torso", "completo", SubResource( 18 ), "completo", "torso", SubResource( 19 ), "torso", "golpe", SubResource( 20 ), "golpe", "torso", SubResource( 21 ) ]
 start_node = "cabeza"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
 [node name="Player" type="RigidBody2D"]
 physics_material_override = SubResource( 1 )
@@ -495,41 +494,41 @@ editor/display_folded = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flippables/AtaqueTorso"]
 position = Vector2( 72.491, -28.5077 )
 rotation = -1.5735
-shape = SubResource( 16 )
+shape = SubResource( 2 )
 
 [node name="Cabeza" type="Sprite" parent="Flippables"]
-visible = false
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 2 )
 
 [node name="Torso" type="AnimatedSprite" parent="Flippables"]
+visible = false
 position = Vector2( 23.9494, -23.3192 )
 scale = Vector2( 0.35, 0.35 )
-frames = SubResource( 17 )
+frames = SubResource( 3 )
 animation = "crawl"
 playing = true
 
 [node name="Completo" type="AnimatedSprite" parent="Flippables"]
 visible = false
 scale = Vector2( 0.35, 0.35 )
-frames = SubResource( 18 )
+frames = SubResource( 4 )
 animation = "idle"
 frame = 2
 playing = true
 
 [node name="Cabeza" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="Torso" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 3.9816, -33.5592 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 disabled = true
 
 [node name="Completo" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 2.27519, -98.9712 )
-shape = SubResource( 4 )
+shape = SubResource( 7 )
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -538,17 +537,17 @@ offset = Vector2( 0, -90 )
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/cabeza = SubResource( 5 )
-anims/completo = SubResource( 6 )
-anims/crawl = SubResource( 19 )
-anims/golpe = SubResource( 20 )
-anims/torso = SubResource( 7 )
+anims/cabeza = SubResource( 8 )
+anims/completo = SubResource( 9 )
+anims/crawl = SubResource( 10 )
+anims/golpe = SubResource( 11 )
+anims/torso = SubResource( 12 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 14 )
+tree_root = SubResource( 22 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 15 )
+parameters/playback = SubResource( 23 )
 
 [node name="GroundTouch" type="RayCast2D" parent="."]
 enabled = true

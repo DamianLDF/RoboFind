@@ -83,7 +83,7 @@ position = Vector2( 78.4986, 155.327 )
 position = Vector2( 298.217, 400.099 )
 
 [node name="EnemigoVolador" parent="." instance=ExtResource( 7 )]
-position = Vector2( -251.304, 7.94222 )
+position = Vector2( -304.217, 90.6393 )
 
 [node name="Node2D" parent="." instance=ExtResource( 8 )]
-position = Vector2( -1075.69, 95.5096 )
+position = Vector2( 999.729, -44.9066 )
