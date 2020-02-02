@@ -1,5 +1,5 @@
 extends RigidBody2D
-
+signal murio
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -22,7 +22,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _process(delta):
-	if not ChequeoDeBorde.is_colliding() or ChequeoDePared.is_colliding() :
+	if not ChequeoDeBorde.is_colliding() or ChequeoDePared.is_colliding():
 		if movimiento == Vector2.LEFT:
 			movimiento = Vector2.RIGHT
 		else:
@@ -39,12 +39,16 @@ func _process(delta):
 		if body.name == "Player":
 			self.apply_central_impulse(movimiento*delta*3000)
 			$Node2D/Sprite.set_texture(textura_ataque)
+			break
 		else:
 			$Node2D/Sprite.set_texture(textura_normal)
 		
 		
-
+func fueGolpeado():
+	self.queue_free()
+	emit_signal("murio")
 
 func _on_Area2D_body_entered(body):
-	self.queue_free()
+	if body.name == "Player":
+		fueGolpeado()
 

@@ -1,27 +1,24 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Enemigo.gd" type="Script" id=1]
-[ext_resource path="res://img/31 sin título_20200201121535.png" type="Texture" id=2]
+[ext_resource path="res://EnemigoVolador.gd" type="Script" id=1]
+[ext_resource path="res://img/enemigo_volador.png" type="Texture" id=2]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( 85.4873, 9.06708 )
 b = Vector2( 0.960144, 9.06708 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 194.437, 84.582 )
+extents = Vector2( 364.139, 143.815 )
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 75.4824
 height = 8.87476
 
-[node name="Enemigo" type="RigidBody2D"]
-position = Vector2( 922.187, 377.12 )
+[node name="EnemigoVolador" type="RigidBody2D"]
+position = Vector2( 682.126, 89.8437 )
 mode = 2
-gravity_scale = 7.0
+gravity_scale = 0.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -29,15 +26,6 @@ __meta__ = {
 position = Vector2( 0.295166, 0.484863 )
 scale = Vector2( 0.616749, 0.594524 )
 texture = ExtResource( 2 )
-
-[node name="ChequeoDeBorde" type="RayCast2D" parent="Node2D"]
-position = Vector2( -94.7369, 53.6843 )
-enabled = true
-
-[node name="ChequeoDePared" type="RayCast2D" parent="Node2D"]
-position = Vector2( -94.9893, -79.7056 )
-enabled = true
-cast_to = Vector2( 0, 140 )
 
 [node name="AreaDeDanio" type="Area2D" parent="Node2D"]
 editor/display_folded = true
@@ -47,14 +35,13 @@ position = Vector2( -47.7352, -87.8112 )
 shape = SubResource( 1 )
 
 [node name="ChequeoDePlayer" type="Area2D" parent="Node2D"]
-editor/display_folded = true
 
 [node name="ColisionConElPlayer" type="CollisionShape2D" parent="Node2D/ChequeoDePlayer"]
-position = Vector2( -270.863, -5.40686 )
+position = Vector2( -251.383, 333.549 )
 shape = SubResource( 2 )
 
 [node name="ColisicionCuerpo" type="CollisionShape2D" parent="."]
-position = Vector2( 2.82428, 4.34201 )
+position = Vector2( 2.82428, 5.22301 )
 shape = SubResource( 3 )
 
 [node name="EnemigoPrueba" type="Node2D" parent="."]
