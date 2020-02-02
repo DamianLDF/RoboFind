@@ -1,12 +1,13 @@
 extends RigidBody2D
+signal zoom_changed
+signal lose
+signal cambia_vida
 
 var fuerza : float = 20
 var fuerza_salto_max : float = 1100
 var fuerza_salto : float = fuerza_salto_max
 var state_machine
 
-var vida: int = 3
-var max_vida: int = 3 
 
 enum Tipo { CABEZA, TORSO, COMPLETO }
 
@@ -55,7 +56,7 @@ func _integrate_forces(state):
 					if tipo == Tipo.TORSO:
 						apply_central_impulse(Vector2.UP * fuerza_salto)
 					elif tipo == Tipo.COMPLETO:
-						apply_central_impulse(Vector2.UP * fuerza_salto * 2)
+						apply_central_impulse(Vector2.UP * fuerza_salto)
 					
 		if Input.is_action_pressed("game_attack"):
 			if tipo == Tipo.TORSO:
@@ -132,7 +133,7 @@ func puede_acelerar()->bool:
 func ajustar_zoom():
 	if tipo == Tipo.TORSO:
 		print ("zoom torso")
-		$Camera2D.zoom = Vector2(1.5,1.5)
+		$Camera2D.zoom = Vector2(2,2)
 		print (str($Camera2D.zoom))
 	elif tipo == Tipo.COMPLETO:
 		print ("zoom completo")
@@ -145,17 +146,18 @@ func dar_torso():
 	tipo = Tipo.TORSO
 	fuerza_salto = fuerza_salto_max / 3
 	state_machine.travel("torso")
-	vida = 6
-	max_vida = 6
+	global.cambiar_vida(6)
+	emit_signal("cambia_vida")
 	call_deferred("estabilizar")
 	
 	
 func dar_cuerpo():
 	tipo = Tipo.COMPLETO
-	fuerza_salto = fuerza_salto_max
+	fuerza_salto = fuerza_salto_max / 5 * 3
 	state_machine.travel("completo")
-	vida = 10
-	max_vida = 10
+	global.cambiar_vida(10)
+	emit_signal("cambia_vida")
+	emit_signal("zoom_changed", Vector2(2, 2))
 	call_deferred("estabilizar")
 
 
@@ -168,14 +170,20 @@ func fueGolpeado():
 	if not invulnerable:
 		invulnerable = true
 		danado = true
-		$Sonidos/Dano.play()
-		vida -= 1
+#		$Sonidos/Dano.play()
+		global.restar_vida()
+		emit_signal("cambia_vida")
 		if tipo == Tipo.TORSO:
 			state_machine.travel("torsodano")
 		elif tipo == Tipo.COMPLETO:
 			state_machine.travel("dano")
 		
-		yield(get_tree().create_timer(.5),"timeout")
+		if global.vida == 0:
+			yield(get_tree().create_timer(2),"timeout")
+			get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
+		else:
+			yield(get_tree().create_timer(.5),"timeout")
+		
 		if tipo == Tipo.TORSO:
 			state_machine.travel("torso")
 		elif tipo == Tipo.COMPLETO:
