@@ -47,4 +47,5 @@ shape = SubResource( 1 )
 stream = ExtResource( 8 )
 autoplay = true
 [connection signal="cambia_vida" from="Player" to="." method="_on_Player_cambia_vida"]
+[connection signal="zoom_changed" from="Player" to="." method="_on_Player_zoom_changed"]
 [connection signal="body_entered" from="WinArea" to="." method="_on_WinArea_body_entered"]

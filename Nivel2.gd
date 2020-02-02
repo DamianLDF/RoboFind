@@ -29,7 +29,6 @@ func fade_in():
 func _on_Player_zoom_changed(zoom : Vector2):
 	$ParallaxBackground.scale = zoom
 	$ParallaxBackground.offset.y = zoom.x * -150
-	pass # Replace with function body.
 
 
 func _on_WinArea_body_entered(body):

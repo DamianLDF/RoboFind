@@ -1,6 +1,8 @@
 extends Node2D
 
 func _ready():
+	global.vida = 3
+	global.max_vida = 3
 	$HUD.actualizar()
 
 func _on_WinArea_body_entered(body):
@@ -12,3 +14,8 @@ func _on_WinArea_body_entered(body):
 
 func _on_Player_cambia_vida():
 	$HUD.actualizar()
+
+
+func _on_Player_zoom_changed(zoom: Vector2):
+	$ParallaxBackground.scale = zoom
+	$ParallaxBackground.offset.y = zoom.x * -150

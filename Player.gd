@@ -148,6 +148,7 @@ func dar_torso():
 	state_machine.travel("torso")
 	global.cambiar_vida(6)
 	emit_signal("cambia_vida")
+	emit_signal("zoom_changed", Vector2(1.5, 1.5))
 	call_deferred("estabilizar")
 	
 	
