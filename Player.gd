@@ -16,9 +16,10 @@ func _ready() -> void:
 func _integrate_forces(state):
 	if Input.is_action_pressed("game_right"):
 		apply_central_impulse(Vector2.RIGHT * fuerza)
+		call_deferred("face_direction", 1)
 	elif Input.is_action_pressed("game_left"):
 		apply_central_impulse(Vector2.LEFT * fuerza)
-		
+		call_deferred("face_direction", -1)
 	if Input.is_action_just_pressed("game_jump"):
 		if tipo == Tipo.TORSO or tipo == Tipo.COMPLETO:
 			if $GroundTouch.is_colliding():
@@ -27,9 +28,9 @@ func _integrate_forces(state):
 				
 	if Input.is_action_just_pressed("game_attack"):
 		if tipo == Tipo.TORSO:
-			for body in $AtaqueTorso.get_overlapping_bodies():
+			for body in $Flippables/AtaqueTorso.get_overlapping_bodies():
 				if body.name.begins_with("Enemigo"):
-					body.atacado()
+					body.fueGolpeado()
 				
 		elif tipo == Tipo.COMPLETO:
 			pass
@@ -45,6 +46,11 @@ func _integrate_forces(state):
 		call_deferred("estabilizar")
 
 
+func face_direction(direction : int):
+	if tipo != Tipo.CABEZA and linear_velocity.x * direction > 0:
+		$Flippables.scale.x = direction
+
+
 func dar_torso():
 	tipo = Tipo.TORSO
 	fuerza_salto = 250
@@ -55,3 +61,7 @@ func dar_torso():
 func estabilizar()->void:
 	self.rotation = 0
 	self.angular_velocity = 0
+
+
+func fueGolpeado():
+	pass
