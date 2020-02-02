@@ -25,10 +25,17 @@ func disparar(angulo: Vector2, positionInicial):
 	direccion = angulo.normalized()
 	usar_process = true
 
+var movimientoViejo = Vector2(0, 0)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if usar_process:
-		self.move_and_collide(direccion * velocidad * delta)
-	
-	if self.is_on_ceiling() or self.is_on_floor() or self.is_on_wall():
-		self.queue_free()
+		var colision = self.move_and_collide(direccion * velocidad * delta)
+		# Chequeo si existe una colision de algun tipo
+		if colision:
+			self.queue_free()
+		
+		movimientoViejo = self.position
+		
+		
+		
+		

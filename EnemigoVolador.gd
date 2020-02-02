@@ -18,7 +18,7 @@ var textura_ataque = preload("res://img/enemigo_terrestre2ataque.png")
 
 func _ready():
 	darVueltaTiming.connect("timeout", self, "flipCharacter")
-	darVueltaTiming.wait_time = 2
+	darVueltaTiming.wait_time = 2.5
 	
 	
 	add_child(darVueltaTiming)
@@ -51,9 +51,9 @@ func _process(delta):
 	for body in  $Node2D/ChequeoDePlayer.get_overlapping_bodies():
 		if body.name == "Player" and puedeDisparar:
 			var laser = escenaDisparo.instance()
-			laser.disparar(body.position - self.position, self.position)
+			var posicionDelRobot = Vector2(self.position.x, self.position.y + 180)
+			laser.disparar(body.position - posicionDelRobot, posicionDelRobot)
 			emit_signal("dispare", laser)
-			print("emiti la senial")
 			puedeDisparar = false
 			yield(get_tree().create_timer(2), "timeout")
 			puedeDisparar = true
