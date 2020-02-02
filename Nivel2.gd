@@ -7,6 +7,7 @@ func crearDisparo(laser):
 
 
 func _ready():
+	$HUD.actualizar()
 	$ParallaxBackground.modulate_color(Color(0,0,0))
 	var numero = $Node2D.get_child_count()
 	for i in range(numero):
@@ -24,3 +25,17 @@ func fade_in():
 	$ParallaxBackground.modulate_color(self.modulate)
 	if self.modulate.r >= 1:
 		fade_in_timer.stop()
+
+func _on_Player_zoom_changed(zoom : Vector2):
+	$ParallaxBackground.scale = zoom
+	$ParallaxBackground.offset.y = zoom.x * -150
+
+
+func _on_WinArea_body_entered(body):
+	if body.name == "Player":
+		global.nivel = 3
+		get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
+
+
+func _on_Player_cambia_vida():
+	$HUD.actualizar()

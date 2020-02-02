@@ -16,11 +16,11 @@
 [ext_resource path="res://img/idle2.png" type="Texture" id=14]
 [ext_resource path="res://img/idle3.png" type="Texture" id=15]
 [ext_resource path="res://img/jump.png" type="Texture" id=16]
-[ext_resource path="res://img/hit.png" type="Texture" id=17]
-[ext_resource path="res://img/walk1.png" type="Texture" id=18]
-[ext_resource path="res://img/walk2.png" type="Texture" id=19]
-[ext_resource path="res://img/walk3.png" type="Texture" id=20]
-[ext_resource path="res://img/walk4.png" type="Texture" id=21]
+[ext_resource path="res://img/walk1.png" type="Texture" id=17]
+[ext_resource path="res://img/walk2.png" type="Texture" id=18]
+[ext_resource path="res://img/walk3.png" type="Texture" id=19]
+[ext_resource path="res://img/walk4.png" type="Texture" id=20]
+[ext_resource path="res://img/hit.png" type="Texture" id=21]
 [ext_resource path="res://img/fall.png" type="Texture" id=22]
 [ext_resource path="res://img/kick1.png" type="Texture" id=23]
 [ext_resource path="res://img/kick2.png" type="Texture" id=24]
@@ -70,14 +70,14 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ) ],
-"loop": true,
-"name": "hurt",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
 "loop": true,
 "name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ) ],
+"loop": true,
+"name": "hurt",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ) ],
@@ -509,6 +509,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("Camera2D:zoom")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ) ]
+}
 
 [sub_resource type="Animation" id=19]
 resource_name = "torsodano"
@@ -680,7 +692,6 @@ position = Vector2( 31.6089, -83.8003 )
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "kick"
-frame = 2
 playing = true
 
 [node name="AtaqueTorso" type="Area2D" parent="Flippables"]
@@ -745,5 +756,5 @@ collide_with_areas = true
 
 [node name="Sonidos" type="Node" parent="."]
 
-[node name="Dano" type="AudioStreamPlayer2D" parent="Sonidos"]
+[node name="Dano" type="AudioStreamPlayer" parent="Sonidos"]
 stream = ExtResource( 26 )
