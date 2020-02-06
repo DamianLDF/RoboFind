@@ -4,27 +4,27 @@
 [ext_resource path="res://img/cabeza.png" type="Texture" id=2]
 [ext_resource path="res://img/torso1.png" type="Texture" id=3]
 [ext_resource path="res://img/torsojump.png" type="Texture" id=4]
-[ext_resource path="res://img/torsohurt.png" type="Texture" id=5]
-[ext_resource path="res://img/crawl1.png" type="Texture" id=6]
-[ext_resource path="res://img/crawl2.png" type="Texture" id=7]
-[ext_resource path="res://img/crawl3.png" type="Texture" id=8]
-[ext_resource path="res://img/crawl4.png" type="Texture" id=9]
+[ext_resource path="res://img/crawl1.png" type="Texture" id=5]
+[ext_resource path="res://img/crawl2.png" type="Texture" id=6]
+[ext_resource path="res://img/crawl3.png" type="Texture" id=7]
+[ext_resource path="res://img/crawl4.png" type="Texture" id=8]
+[ext_resource path="res://img/torsohurt.png" type="Texture" id=9]
 [ext_resource path="res://img/punch1.png" type="Texture" id=10]
 [ext_resource path="res://img/punch2.png" type="Texture" id=11]
 [ext_resource path="res://img/punch3.png" type="Texture" id=12]
 [ext_resource path="res://img/robotidle1.png" type="Texture" id=13]
 [ext_resource path="res://img/idle2.png" type="Texture" id=14]
 [ext_resource path="res://img/idle3.png" type="Texture" id=15]
-[ext_resource path="res://img/jump.png" type="Texture" id=16]
-[ext_resource path="res://img/walk1.png" type="Texture" id=17]
-[ext_resource path="res://img/walk2.png" type="Texture" id=18]
-[ext_resource path="res://img/walk3.png" type="Texture" id=19]
-[ext_resource path="res://img/walk4.png" type="Texture" id=20]
-[ext_resource path="res://img/hit.png" type="Texture" id=21]
-[ext_resource path="res://img/fall.png" type="Texture" id=22]
-[ext_resource path="res://img/kick1.png" type="Texture" id=23]
-[ext_resource path="res://img/kick2.png" type="Texture" id=24]
-[ext_resource path="res://img/kick3.png" type="Texture" id=25]
+[ext_resource path="res://img/walk1.png" type="Texture" id=16]
+[ext_resource path="res://img/walk2.png" type="Texture" id=17]
+[ext_resource path="res://img/walk3.png" type="Texture" id=18]
+[ext_resource path="res://img/walk4.png" type="Texture" id=19]
+[ext_resource path="res://img/jump.png" type="Texture" id=20]
+[ext_resource path="res://img/kick1.png" type="Texture" id=21]
+[ext_resource path="res://img/kick2.png" type="Texture" id=22]
+[ext_resource path="res://img/kick3.png" type="Texture" id=23]
+[ext_resource path="res://img/fall.png" type="Texture" id=24]
+[ext_resource path="res://img/hit.png" type="Texture" id=25]
 [ext_resource path="res://ROBOFIND audios/owrobot.ogg" type="AudioStream" id=26]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -42,15 +42,15 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "hurt",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "crawl",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "hurt",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 10 ) ],
 "loop": true,
@@ -65,29 +65,29 @@ animations = [ {
 "name": "idle",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 16 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 21 ) ],
+"frames": [ ExtResource( 20 ) ],
 "loop": true,
-"name": "hurt",
+"name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "kick",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 23 ) ],
+"frames": [ ExtResource( 25 ) ],
 "loop": true,
-"name": "kick",
+"name": "hurt",
 "speed": 5.0
 } ]
 
@@ -666,6 +666,7 @@ graph_offset = Vector2( 82.7347, -127 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=55]
 
 [node name="Player" type="RigidBody2D"]
+collision_mask = 61
 physics_material_override = SubResource( 1 )
 gravity_scale = 8.0
 contacts_reported = 1
@@ -679,7 +680,6 @@ scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 2 )
 
 [node name="Torso" type="AnimatedSprite" parent="Flippables"]
-visible = false
 position = Vector2( 23.9494, -23.3192 )
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
@@ -692,10 +692,13 @@ position = Vector2( 31.6089, -83.8003 )
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
 animation = "kick"
+frame = 2
 playing = true
 
 [node name="AtaqueTorso" type="Area2D" parent="Flippables"]
 editor/display_folded = true
+collision_layer = 2
+collision_mask = 264
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flippables/AtaqueTorso"]
 position = Vector2( 72.491, -28.5077 )
@@ -704,17 +707,17 @@ shape = SubResource( 4 )
 
 [node name="Patada" type="Area2D" parent="Flippables"]
 editor/display_folded = true
+collision_layer = 2
+collision_mask = 264
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flippables/Patada"]
 position = Vector2( 73.3143, -52.1363 )
 shape = SubResource( 5 )
 
 [node name="Cabeza" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 6 )
 
 [node name="Torso" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 3.9816, -33.5592 )
 shape = SubResource( 7 )
 disabled = true
@@ -749,9 +752,28 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 55 )
 
-[node name="GroundTouch" type="RayCast2D" parent="."]
+[node name="GroundTouch" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="GroundTouch" type="RayCast2D" parent="GroundTouch"]
+position = Vector2( 0.42469, 0.859489 )
 enabled = true
 cast_to = Vector2( 0, 26 )
+collision_mask = 292
+collide_with_areas = true
+
+[node name="GroundTouch2" type="RayCast2D" parent="GroundTouch"]
+position = Vector2( 35.8981, -13.599 )
+enabled = true
+cast_to = Vector2( 0, 35 )
+collision_mask = 292
+collide_with_areas = true
+
+[node name="GroundTouch3" type="RayCast2D" parent="GroundTouch"]
+position = Vector2( -28.5107, -13.3789 )
+enabled = true
+cast_to = Vector2( 0, 35 )
+collision_mask = 292
 collide_with_areas = true
 
 [node name="Sonidos" type="Node" parent="."]

@@ -17,6 +17,8 @@ height = 8.87476
 
 [node name="EnemigoVolador" type="RigidBody2D"]
 position = Vector2( 682.126, 89.8437 )
+collision_layer = 8
+collision_mask = 47
 mode = 2
 gravity_scale = 0.0
 script = ExtResource( 1 )
@@ -39,6 +41,8 @@ texture = ExtResource( 3 )
 
 [node name="AreaDeDanio" type="Area2D" parent="Node2D"]
 editor/display_folded = true
+collision_layer = 8
+collision_mask = 2
 
 [node name="ColisionDanio" type="CollisionShape2D" parent="Node2D/AreaDeDanio"]
 position = Vector2( -47.7352, -87.8112 )
@@ -46,6 +50,7 @@ shape = SubResource( 1 )
 
 [node name="ChequeoDePlayer" type="Area2D" parent="Node2D"]
 editor/display_folded = true
+collision_layer = 64
 
 [node name="ColisionConElPlayer" type="CollisionShape2D" parent="Node2D/ChequeoDePlayer"]
 position = Vector2( -251.383, 333.549 )

@@ -15,7 +15,7 @@ var flipImagen = true
 var textura_normal = "normal"
 var textura_ataque = "ataque"
 # Called when the node enters the scene tree for the first time.
-
+var exploded:bool = false
 
 func _ready():
 	$Node2D/SpriteExplosion.hide()
@@ -45,13 +45,13 @@ func _process(delta):
 		else:
 			$Node2D/Sprite.set_animation(textura_normal)
 	
-#	for i in range( $Node2D/AreaDeAtaque.get_child_count()):
-#		var colision = $Node2D/AreaDeAtaque.get_child(i)
-#		for body in colision.get_overlapping_bodies():
+	if not exploded:
 		for body in  $Node2D/AreaDeAtaque.get_overlapping_bodies():
-			if body.name == "Player":
-				body.fueGolpeado()
+			body.fueGolpeado()
+
+
 func fueGolpeado():
+	exploded = true
 	$Node2D/SpriteExplosion.show()
 	$Node2D/SonidoExplosion.play()
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -61,4 +61,3 @@ func fueGolpeado():
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
 		fueGolpeado()
-

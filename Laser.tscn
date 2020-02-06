@@ -26,6 +26,7 @@ rotation = 1.57079
 shape = SubResource( 1 )
 
 [node name="AreaDeAtaque" type="Area2D" parent="."]
+collision_layer = 16
 
 [node name="ColisionDeAtaque" type="CollisionShape2D" parent="AreaDeAtaque"]
 position = Vector2( -1.58405, -10.7166 )

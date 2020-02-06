@@ -1,77 +1,93 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://EnemigoFinal.gd" type="Script" id=1]
 [ext_resource path="res://img/Minstruo MOV1.png" type="Texture" id=2]
-[ext_resource path="res://img/Monstruo M1.png" type="Texture" id=3]
-[ext_resource path="res://img/Monstruo M2.png" type="Texture" id=4]
-[ext_resource path="res://img/Monstruo M3.png" type="Texture" id=5]
-[ext_resource path="res://img/Monstruo M4.png" type="Texture" id=6]
-[ext_resource path="res://img/Monstruo M5.png" type="Texture" id=7]
-[ext_resource path="res://img/Monstruo M6.png" type="Texture" id=8]
-[ext_resource path="res://img/Monstruo M7.png" type="Texture" id=9]
-[ext_resource path="res://img/Monstruo M8.png" type="Texture" id=10]
-[ext_resource path="res://img/Monstruo M10.png" type="Texture" id=11]
-[ext_resource path="res://img/Monstruo M9.png" type="Texture" id=12]
-[ext_resource path="res://img/MONSTRUO MOV 2.png" type="Texture" id=13]
+[ext_resource path="res://img/MONSTRUO MOV 2.png" type="Texture" id=3]
+[ext_resource path="res://img/Monstruo M1.png" type="Texture" id=4]
+[ext_resource path="res://img/Monstruo M2.png" type="Texture" id=5]
+[ext_resource path="res://img/Monstruo M3.png" type="Texture" id=6]
+[ext_resource path="res://img/Monstruo M4.png" type="Texture" id=7]
+[ext_resource path="res://img/Monstruo M5.png" type="Texture" id=8]
+[ext_resource path="res://img/Monstruo M6.png" type="Texture" id=9]
+[ext_resource path="res://img/Monstruo M7.png" type="Texture" id=10]
+[ext_resource path="res://img/Monstruo M8.png" type="Texture" id=11]
+[ext_resource path="res://img/Monstruo M10.png" type="Texture" id=12]
+[ext_resource path="res://img/Monstruo M9.png" type="Texture" id=13]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 236.079
 height = 270.491
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "caminar",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "muere",
+"speed": 6.0
+}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "quieto",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "muere",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "caminar",
-"speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 83.527, 97.4978 )
+
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 428.479, 559.616 )
+extents = Vector2( 472.135, 559.616 )
 
 [node name="EnemigoFinal" type="RigidBody2D"]
-position = Vector2( 742.498, 211.304 )
+position = Vector2( 766.991, 186.811 )
+collision_layer = 8
+collision_mask = 47
 mode = 2
 gravity_scale = 14.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="ColisionJefe1" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="ChequeoDePared" type="RayCast2D" parent="Node2D"]
 position = Vector2( -273.001, -254.851 )
 enabled = true
-cast_to = Vector2( 0, 550 )
+cast_to = Vector2( -100, 550 )
+collision_mask = 4
 
 [node name="ChequeoDeBorde" type="RayCast2D" parent="Node2D"]
 position = Vector2( -270.384, 387.691 )
 enabled = true
+collision_mask = 4
 
 [node name="Sprite" type="AnimatedSprite" parent="Node2D"]
 position = Vector2( -19.6459, 1.36041 )
 scale = Vector2( 0.999484, 1 )
 frames = SubResource( 2 )
 animation = "caminar"
-frame = 1
 playing = true
 
+[node name="AreaAgarre" type="Area2D" parent="Node2D"]
+position = Vector2( -176.119, 274.092 )
+collision_layer = 64
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/AreaAgarre"]
+shape = SubResource( 3 )
+
 [node name="AreaDeAtaque" type="Area2D" parent="Node2D"]
+collision_layer = 64
 
 [node name="CollisionDeAtaque" type="CollisionShape2D" parent="Node2D/AreaDeAtaque"]
-position = Vector2( -823.012, -125.002 )
+position = Vector2( -684.256, -154.435 )
 shape = SubResource( 4 )
+
+[node name="FuenteProyectiles" type="Node2D" parent="Node2D"]
+position = Vector2( -310.331, -47.9657 )
+[connection signal="body_entered" from="Node2D/AreaAgarre" to="." method="_on_AreaAgarre_body_entered"]

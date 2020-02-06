@@ -5,7 +5,6 @@ extends Node2D
 # var b = "text"
 
 func crearDisparo(proyectil):
-	print(proyectil.name)
 	add_child(proyectil)
 	
 

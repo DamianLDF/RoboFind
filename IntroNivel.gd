@@ -21,5 +21,6 @@ func _ready():
 		3:
 			get_tree().call_deferred("change_scene", "res://Nivel3.tscn")
 		4:
+			yield(get_tree().create_timer(3),"timeout")
 			global.nivel = 1
-			get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
+			get_tree().call_deferred("change_scene", "res://Menu.tscn")

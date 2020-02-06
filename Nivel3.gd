@@ -2,8 +2,8 @@ extends Node2D
 
 onready var fade_in_timer = Timer.new()
 
-func crearDisparo(laser):
-	add_child(laser)
+func crearDisparo(disparo):
+	add_child(disparo)
 
 func _ready():
 	$HUD.actualizar()
@@ -14,7 +14,7 @@ func _ready():
 	fade_in_timer.wait_time = 0.1
 	add_child(fade_in_timer)
 	fade_in_timer.start()
-	
+
 
 func fade_in():
 	$Player.dar_cuerpo()
@@ -29,6 +29,16 @@ func _on_Player_cambia_vida():
 
 
 func _on_BossArea_body_entered(body):
-	if body.name == "Player":
-		$Ambiente.stop()
-		$PeleaJefe.play()
+	$Ambiente.stop()
+	$PeleaJefe.play()
+	$HUD.mostrar_jefe()
+
+
+func _on_EnemigoFinal_cambia_vida(vida:int, vida_max:int)->void:
+	$HUD.actualizar_jefe(vida, vida_max)
+
+
+func _on_EnemigoFinal_muere():
+	global.nivel = 4
+	get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
+

@@ -4,7 +4,7 @@ signal lose
 signal cambia_vida
 
 var fuerza : float = 20
-var fuerza_salto_max : float = 1100
+var fuerza_salto_max : float = 1200
 var fuerza_salto : float = fuerza_salto_max
 var state_machine
 
@@ -26,7 +26,7 @@ func _integrate_forces(state):
 		if Input.is_action_pressed("game_right"):
 			if puede_acelerar():
 				apply_central_impulse(Vector2.RIGHT * fuerza)
-			if $GroundTouch.is_colliding():
+			if tocando_tierra():
 				if tipo == Tipo.TORSO:
 					prox_anim = "crawl"
 				elif tipo == Tipo.COMPLETO:
@@ -35,7 +35,7 @@ func _integrate_forces(state):
 		elif Input.is_action_pressed("game_left"):
 			if puede_acelerar():
 				apply_central_impulse(Vector2.LEFT * fuerza)
-			if $GroundTouch.is_colliding():
+			if tocando_tierra():
 				if tipo == Tipo.TORSO:
 					prox_anim = "crawl"
 				elif tipo == Tipo.COMPLETO:
@@ -51,7 +51,7 @@ func _integrate_forces(state):
 					prox_anim = "completo"
 		if Input.is_action_just_pressed("game_jump"):
 			if tipo == Tipo.TORSO or tipo == Tipo.COMPLETO:
-				if $GroundTouch.is_colliding():
+				if tocando_tierra():
 		#		if state.get_contact_count() > 0:
 					if tipo == Tipo.TORSO:
 						apply_central_impulse(Vector2.UP * fuerza_salto)
@@ -62,19 +62,19 @@ func _integrate_forces(state):
 			if tipo == Tipo.TORSO:
 				prox_anim = "golpe"
 				for body in $Flippables/AtaqueTorso.get_overlapping_bodies():
-					if body.name.begins_with("Enemigo"):
+#					if body.name.begins_with("Enemigo"):
 						body.fueGolpeado()
 			if tipo == Tipo.COMPLETO:
 				prox_anim = "patada"
 				for body in $Flippables/Patada.get_overlapping_bodies():
-					if body.name.begins_with("Enemigo"):
+#					if body.name.begins_with("Enemigo"):
 						body.fueGolpeado()
 					
 			elif tipo == Tipo.COMPLETO:
 				pass
 		
 		if prox_anim != "golpe" and prox_anim != "patada":
-			if not $GroundTouch.is_colliding():
+			if not tocando_tierra():
 				if tipo == Tipo.TORSO:
 					prox_anim = "torsosalto"
 				elif tipo == Tipo.COMPLETO:
@@ -105,9 +105,13 @@ func face_direction(direction : int):
 		if linear_velocity.x * direction > 0:
 			$Flippables.scale.x = direction
 
+func tocando_tierra() -> bool:
+	return $GroundTouch/GroundTouch.is_colliding() or \
+			$GroundTouch/GroundTouch2.is_colliding() or \
+			$GroundTouch/GroundTouch3.is_colliding()
 
 func puede_acelerar()->bool:
-	if $GroundTouch.is_colliding():
+	if tocando_tierra():
 		if tipo == Tipo.TORSO:
 			if abs(linear_velocity.x) < 300:
 				return true

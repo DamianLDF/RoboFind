@@ -26,12 +26,11 @@ b = Vector2( 0.960144, 9.06708 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 194.437, 84.582 )
 
-[sub_resource type="RectangleShape2D" id=4]
-custom_solver_bias = 1.0
-extents = Vector2( 6.17578, 69.6567 )
+[sub_resource type="CircleShape2D" id=7]
+radius = 71.863
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 68.5175, 15.3157 )
+extents = Vector2( 50, 15.316 )
 
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 75.4824
@@ -39,6 +38,8 @@ height = 8.87476
 
 [node name="Enemigo" type="RigidBody2D"]
 position = Vector2( 906.021, 379.515 )
+collision_layer = 8
+collision_mask = 47
 mode = 2
 gravity_scale = 7.0
 script = ExtResource( 1 )
@@ -61,20 +62,25 @@ texture = ExtResource( 4 )
 [node name="ChequeoDeBorde" type="RayCast2D" parent="Node2D"]
 position = Vector2( -94.7369, 53.6843 )
 enabled = true
+collision_mask = 4
 
 [node name="ChequeoDePared" type="RayCast2D" parent="Node2D"]
 position = Vector2( -81.7253, -85.0829 )
 enabled = true
 cast_to = Vector2( 0, 160 )
+collision_mask = 4
 
 [node name="ChequeoDePiso" type="RayCast2D" parent="Node2D"]
 position = Vector2( 60.3309, 87.5756 )
 rotation = 1.5708
 enabled = true
 cast_to = Vector2( 0, 120 )
+collision_mask = 4
 
 [node name="AreaDeDanio" type="Area2D" parent="Node2D"]
 editor/display_folded = true
+collision_layer = 8
+collision_mask = 2
 
 [node name="ColisionDanio" type="CollisionShape2D" parent="Node2D/AreaDeDanio"]
 position = Vector2( -47.7352, -87.8112 )
@@ -82,19 +88,21 @@ shape = SubResource( 2 )
 
 [node name="ChequeoDePlayer" type="Area2D" parent="Node2D"]
 editor/display_folded = true
+collision_layer = 64
 
 [node name="ColisionConElPlayer" type="CollisionShape2D" parent="Node2D/ChequeoDePlayer"]
 position = Vector2( -270.863, -5.40686 )
 shape = SubResource( 3 )
 
 [node name="AreaDeAtaque" type="Area2D" parent="Node2D"]
+collision_layer = 16
 
 [node name="ColisionAtaque1" type="CollisionShape2D" parent="Node2D/AreaDeAtaque"]
-position = Vector2( -67.1611, 5.98996 )
-shape = SubResource( 4 )
+position = Vector2( -17.4046, 11.9607 )
+shape = SubResource( 7 )
 
 [node name="ColisionAtaque2" type="CollisionShape2D" parent="Node2D/AreaDeAtaque"]
-position = Vector2( -0.677673, 70.0401 )
+position = Vector2( -15.3079, 70.5278 )
 shape = SubResource( 5 )
 
 [node name="SonidoExplosion" type="AudioStreamPlayer" parent="Node2D"]
