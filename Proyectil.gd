@@ -8,7 +8,8 @@ var usar_process = false
 
 func lanzar(direccion, ubicacion):
 	self.position = ubicacion
-	self.apply_central_impulse(direccion.normalized()*800)
+	self.apply_central_impulse(Vector2( \
+			direccion.normalized().x*800,0))
 #	usar_process = true
 
 # Called when the node enters the scene tree for the first time.

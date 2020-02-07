@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://EnemigoFinal.gd" type="Script" id=1]
 [ext_resource path="res://img/Minstruo MOV1.png" type="Texture" id=2]
@@ -20,6 +20,11 @@ height = 270.491
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "quieto",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "caminar",
@@ -29,24 +34,23 @@ animations = [ {
 "loop": false,
 "name": "muere",
 "speed": 6.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "quieto",
-"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 83.527, 97.4978 )
+extents = Vector2( 83.527, 56.0276 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 472.135, 559.616 )
 
+[sub_resource type="CapsuleShape2D" id=5]
+height = 455.001
+
 [node name="EnemigoFinal" type="RigidBody2D"]
 position = Vector2( 766.991, 186.811 )
 collision_layer = 8
-collision_mask = 47
+collision_mask = 46
 mode = 2
+mass = 10.0
 gravity_scale = 14.0
 script = ExtResource( 1 )
 
@@ -58,7 +62,7 @@ shape = SubResource( 1 )
 [node name="ChequeoDePared" type="RayCast2D" parent="Node2D"]
 position = Vector2( -273.001, -254.851 )
 enabled = true
-cast_to = Vector2( -100, 550 )
+cast_to = Vector2( -200, 550 )
 collision_mask = 4
 
 [node name="ChequeoDeBorde" type="RayCast2D" parent="Node2D"]
@@ -71,6 +75,7 @@ position = Vector2( -19.6459, 1.36041 )
 scale = Vector2( 0.999484, 1 )
 frames = SubResource( 2 )
 animation = "caminar"
+frame = 1
 playing = true
 
 [node name="AreaAgarre" type="Area2D" parent="Node2D"]
@@ -79,6 +84,7 @@ collision_layer = 64
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/AreaAgarre"]
+position = Vector2( 1.67017, 40.0844 )
 shape = SubResource( 3 )
 
 [node name="AreaDeAtaque" type="Area2D" parent="Node2D"]
@@ -90,4 +96,9 @@ shape = SubResource( 4 )
 
 [node name="FuenteProyectiles" type="Node2D" parent="Node2D"]
 position = Vector2( -310.331, -47.9657 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.27826, 349.884 )
+rotation = -1.57079
+shape = SubResource( 5 )
 [connection signal="body_entered" from="Node2D/AreaAgarre" to="." method="_on_AreaAgarre_body_entered"]

@@ -3,6 +3,12 @@ extends CanvasLayer
 func _ready():
 	pass
 
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().call_deferred("change_scene", "res://Menu.tscn")
+	elif event.is_action_pressed("ui_accept"):
+		get_tree().paused = not get_tree().paused
+
 
 func actualizar():
 	$Vida.max_value = global.max_vida

@@ -34,10 +34,8 @@ func _process(delta):
 		if colision:
 			for body in  $AreaDeAtaque.get_overlapping_bodies():
 #				print("Nombre del Objeto que colisiono: ", body.name)
-				if body.name == "Player":
+#				if body.name == "Player":
 					body.fueGolpeado()
-					
-			
 			call_deferred("queue_free")
 		
 		

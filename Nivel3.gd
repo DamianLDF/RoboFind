@@ -9,6 +9,7 @@ func _ready():
 	$HUD.actualizar()
 	var numero = $Enemigos.get_child_count()
 	for i in range(numero):
+		# warning-ignore: return_value_discarded
 		$Enemigos.get_child(i).connect("dispare", self, "crearDisparo")
 	fade_in_timer.connect("timeout", self, "fade_in")
 	fade_in_timer.wait_time = 0.1
@@ -28,10 +29,12 @@ func _on_Player_cambia_vida():
 	$HUD.actualizar()
 
 
+# warning-ignore: unused_argument
 func _on_BossArea_body_entered(body):
 	$Ambiente.stop()
 	$PeleaJefe.play()
 	$HUD.mostrar_jefe()
+	$BossAreaEntrance.call_deferred("queue_free")
 
 
 func _on_EnemigoFinal_cambia_vida(vida:int, vida_max:int)->void:
