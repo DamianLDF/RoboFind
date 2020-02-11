@@ -8,8 +8,8 @@ radius = 2.53387
 height = 88.9746
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 4.31116
-height = 116.453
+radius = 7.25507
+height = 101.571
 
 [node name="Laser" type="KinematicBody2D"]
 position = Vector2( 574.041, 324.329 )

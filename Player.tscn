@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=94 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://img/cabeza.png" type="Texture" id=2]
@@ -12,20 +12,21 @@
 [ext_resource path="res://img/punch1.png" type="Texture" id=10]
 [ext_resource path="res://img/punch2.png" type="Texture" id=11]
 [ext_resource path="res://img/punch3.png" type="Texture" id=12]
-[ext_resource path="res://img/robotidle1.png" type="Texture" id=13]
-[ext_resource path="res://img/idle2.png" type="Texture" id=14]
-[ext_resource path="res://img/idle3.png" type="Texture" id=15]
-[ext_resource path="res://img/walk1.png" type="Texture" id=16]
-[ext_resource path="res://img/walk2.png" type="Texture" id=17]
-[ext_resource path="res://img/walk3.png" type="Texture" id=18]
-[ext_resource path="res://img/walk4.png" type="Texture" id=19]
-[ext_resource path="res://img/jump.png" type="Texture" id=20]
-[ext_resource path="res://img/kick1.png" type="Texture" id=21]
-[ext_resource path="res://img/kick2.png" type="Texture" id=22]
-[ext_resource path="res://img/kick3.png" type="Texture" id=23]
-[ext_resource path="res://img/fall.png" type="Texture" id=24]
-[ext_resource path="res://img/hit.png" type="Texture" id=25]
-[ext_resource path="res://ROBOFIND audios/owrobot.ogg" type="AudioStream" id=26]
+[ext_resource path="res://img/explosion.png" type="Texture" id=13]
+[ext_resource path="res://img/robotidle1.png" type="Texture" id=14]
+[ext_resource path="res://img/idle2.png" type="Texture" id=15]
+[ext_resource path="res://img/idle3.png" type="Texture" id=16]
+[ext_resource path="res://img/jump.png" type="Texture" id=17]
+[ext_resource path="res://img/walk1.png" type="Texture" id=18]
+[ext_resource path="res://img/walk2.png" type="Texture" id=19]
+[ext_resource path="res://img/walk3.png" type="Texture" id=20]
+[ext_resource path="res://img/walk4.png" type="Texture" id=21]
+[ext_resource path="res://img/hit.png" type="Texture" id=22]
+[ext_resource path="res://img/kick1.png" type="Texture" id=23]
+[ext_resource path="res://img/kick2.png" type="Texture" id=24]
+[ext_resource path="res://img/kick3.png" type="Texture" id=25]
+[ext_resource path="res://img/fall.png" type="Texture" id=26]
+[ext_resource path="res://ROBOFIND audios/owrobot.ogg" type="AudioStream" id=27]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.2
@@ -56,39 +57,49 @@ animations = [ {
 "loop": true,
 "name": "punch",
 "speed": 14.0
+}, {
+"frames": [ ExtResource( 13 ), null ],
+"loop": false,
+"name": "explode",
+"speed": 1.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "idle",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 20 ) ],
+"frames": [ ExtResource( 17 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 21 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "hurt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 23 ) ],
 "loop": true,
 "name": "kick",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 24 ) ],
+"frames": [ ExtResource( 26 ) ],
 "loop": true,
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 25 ) ],
-"loop": true,
-"name": "hurt",
-"speed": 5.0
+"frames": [ ExtResource( 13 ), null ],
+"loop": false,
+"name": "explode",
+"speed": 1.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=4]
@@ -323,6 +334,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("Flippables/Completo:animation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "idle" ]
+}
 
 [sub_resource type="Animation" id=13]
 resource_name = "crawl"
@@ -352,6 +375,33 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ "hurt" ]
+}
+
+[sub_resource type="Animation" id=57]
+resource_name = "explota"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Completo:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "explode" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flippables/Completo:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -521,6 +571,18 @@ tracks/8/keys = {
 "update": 0,
 "values": [ Vector2( 1.5, 1.5 ) ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("Flippables/Torso:animation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "idle" ]
+}
 
 [sub_resource type="Animation" id=19]
 resource_name = "torsodano"
@@ -535,6 +597,34 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ "hurt" ]
+}
+
+[sub_resource type="Animation" id=58]
+resource_name = "torsoexplota"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flippables/Torso:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "explode" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flippables/Torso:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -570,6 +660,9 @@ animation = "crawl"
 [sub_resource type="AnimationNodeAnimation" id=26]
 animation = "dano"
 
+[sub_resource type="AnimationNodeAnimation" id=59]
+animation = "explota"
+
 [sub_resource type="AnimationNodeAnimation" id=27]
 animation = "golpe"
 
@@ -584,6 +677,9 @@ animation = "torso"
 
 [sub_resource type="AnimationNodeAnimation" id=31]
 animation = "torsodano"
+
+[sub_resource type="AnimationNodeAnimation" id=60]
+animation = "torsoexplota"
 
 [sub_resource type="AnimationNodeAnimation" id=32]
 animation = "torsosalto"
@@ -634,39 +730,58 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=64]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=65]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=66]
+
 [sub_resource type="AnimationNodeStateMachine" id=54]
 states/cabeza/node = SubResource( 21 )
 states/cabeza/position = Vector2( 113, 64 )
 states/caida/node = SubResource( 22 )
-states/caida/position = Vector2( 791, 189 )
+states/caida/position = Vector2( 791, 64 )
 states/camina/node = SubResource( 23 )
-states/camina/position = Vector2( 791, -47 )
+states/camina/position = Vector2( 596, -47 )
 states/completo/node = SubResource( 24 )
 states/completo/position = Vector2( 596, 64 )
 states/crawl/node = SubResource( 25 )
-states/crawl/position = Vector2( 276, -47 )
+states/crawl/position = Vector2( 253, -47 )
 states/dano/node = SubResource( 26 )
-states/dano/position = Vector2( 596, 194 )
+states/dano/position = Vector2( 791, 170 )
+states/explota/node = SubResource( 59 )
+states/explota/position = Vector2( 791, 279 )
 states/golpe/node = SubResource( 27 )
-states/golpe/position = Vector2( 248, 189 )
+states/golpe/position = Vector2( 253, 170 )
 states/patada/node = SubResource( 28 )
-states/patada/position = Vector2( 596, -47 )
+states/patada/position = Vector2( 596, 170 )
 states/salto/node = SubResource( 29 )
-states/salto/position = Vector2( 791, 64 )
+states/salto/position = Vector2( 791, -47 )
 states/torso/node = SubResource( 30 )
 states/torso/position = Vector2( 360, 64 )
 states/torsodano/node = SubResource( 31 )
-states/torsodano/position = Vector2( 433, 194 )
+states/torsodano/position = Vector2( 448, 170 )
+states/torsoexplota/node = SubResource( 60 )
+states/torsoexplota/position = Vector2( 360, 279 )
 states/torsosalto/node = SubResource( 32 )
-states/torsosalto/position = Vector2( 427, -47 )
-transitions = [ "cabeza", "torso", SubResource( 33 ), "torso", "completo", SubResource( 34 ), "completo", "torso", SubResource( 35 ), "torso", "golpe", SubResource( 36 ), "golpe", "torso", SubResource( 37 ), "torso", "crawl", SubResource( 38 ), "crawl", "torso", SubResource( 39 ), "torso", "torsosalto", SubResource( 40 ), "torsosalto", "torso", SubResource( 41 ), "torso", "torsodano", SubResource( 42 ), "torsodano", "torso", SubResource( 43 ), "completo", "caida", SubResource( 44 ), "caida", "completo", SubResource( 45 ), "completo", "dano", SubResource( 46 ), "dano", "completo", SubResource( 47 ), "completo", "salto", SubResource( 48 ), "salto", "completo", SubResource( 49 ), "camina", "completo", SubResource( 50 ), "completo", "camina", SubResource( 51 ), "completo", "patada", SubResource( 52 ), "patada", "completo", SubResource( 53 ) ]
+states/torsosalto/position = Vector2( 448, -47 )
+transitions = [ "cabeza", "torso", SubResource( 33 ), "torso", "completo", SubResource( 34 ), "completo", "torso", SubResource( 35 ), "torso", "golpe", SubResource( 36 ), "golpe", "torso", SubResource( 37 ), "torso", "crawl", SubResource( 38 ), "crawl", "torso", SubResource( 39 ), "torso", "torsosalto", SubResource( 40 ), "torsosalto", "torso", SubResource( 41 ), "torso", "torsodano", SubResource( 42 ), "torsodano", "torso", SubResource( 43 ), "completo", "caida", SubResource( 44 ), "caida", "completo", SubResource( 45 ), "completo", "dano", SubResource( 46 ), "dano", "completo", SubResource( 47 ), "completo", "salto", SubResource( 48 ), "salto", "completo", SubResource( 49 ), "camina", "completo", SubResource( 50 ), "completo", "camina", SubResource( 51 ), "completo", "patada", SubResource( 52 ), "patada", "completo", SubResource( 53 ), "torso", "cabeza", SubResource( 56 ), "torso", "torsoexplota", SubResource( 61 ), "completo", "explota", SubResource( 62 ), "golpe", "torsoexplota", SubResource( 63 ), "patada", "explota", SubResource( 64 ), "golpe", "torsodano", SubResource( 65 ), "patada", "dano", SubResource( 66 ) ]
 start_node = "cabeza"
-graph_offset = Vector2( 82.7347, -127 )
+graph_offset = Vector2( 189.765, -127 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=55]
 
 [node name="Player" type="RigidBody2D"]
 collision_mask = 61
+mode = 2
 physics_material_override = SubResource( 1 )
 gravity_scale = 8.0
 contacts_reported = 1
@@ -676,6 +791,7 @@ script = ExtResource( 1 )
 [node name="Flippables" type="Node2D" parent="."]
 
 [node name="Cabeza" type="Sprite" parent="Flippables"]
+visible = false
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 2 )
 
@@ -683,7 +799,8 @@ texture = ExtResource( 2 )
 position = Vector2( 23.9494, -23.3192 )
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 2 )
-animation = "jump"
+animation = "explode"
+frame = 1
 playing = true
 
 [node name="Completo" type="AnimatedSprite" parent="Flippables"]
@@ -691,8 +808,8 @@ visible = false
 position = Vector2( 31.6089, -83.8003 )
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 3 )
-animation = "kick"
-frame = 2
+animation = "explode"
+frame = 1
 playing = true
 
 [node name="AtaqueTorso" type="Area2D" parent="Flippables"]
@@ -714,8 +831,15 @@ collision_mask = 264
 position = Vector2( 73.3143, -52.1363 )
 shape = SubResource( 5 )
 
+[node name="Explosion" type="Sprite" parent="Flippables"]
+visible = false
+position = Vector2( -10.5513, -63.308 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 13 )
+
 [node name="Cabeza" type="CollisionShape2D" parent="."]
 shape = SubResource( 6 )
+disabled = true
 
 [node name="Torso" type="CollisionShape2D" parent="."]
 position = Vector2( 3.9816, -33.5592 )
@@ -725,12 +849,12 @@ disabled = true
 [node name="Completo" type="CollisionShape2D" parent="."]
 position = Vector2( 3.74537, -92.3554 )
 shape = SubResource( 8 )
-disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
 offset = Vector2( 0, -90 )
 current = true
+zoom = Vector2( 1.5, 1.5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/cabeza = SubResource( 9 )
@@ -739,11 +863,13 @@ anims/camina = SubResource( 11 )
 anims/completo = SubResource( 12 )
 anims/crawl = SubResource( 13 )
 anims/dano = SubResource( 14 )
+anims/explota = SubResource( 57 )
 anims/golpe = SubResource( 15 )
 anims/patada = SubResource( 16 )
 anims/salto = SubResource( 17 )
 anims/torso = SubResource( 18 )
 anims/torsodano = SubResource( 19 )
+anims/torsoexplota = SubResource( 58 )
 anims/torsosalto = SubResource( 20 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -753,7 +879,6 @@ active = true
 parameters/playback = SubResource( 55 )
 
 [node name="GroundTouch" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="GroundTouch" type="RayCast2D" parent="GroundTouch"]
 position = Vector2( 0.42469, 0.859489 )
@@ -763,14 +888,14 @@ collision_mask = 292
 collide_with_areas = true
 
 [node name="GroundTouch2" type="RayCast2D" parent="GroundTouch"]
-position = Vector2( 35.8981, -13.599 )
+position = Vector2( 29.1824, -13.015 )
 enabled = true
 cast_to = Vector2( 0, 35 )
 collision_mask = 292
 collide_with_areas = true
 
 [node name="GroundTouch3" type="RayCast2D" parent="GroundTouch"]
-position = Vector2( -28.5107, -13.3789 )
+position = Vector2( -22.9629, -13.0869 )
 enabled = true
 cast_to = Vector2( 0, 35 )
 collision_mask = 292
@@ -779,4 +904,4 @@ collide_with_areas = true
 [node name="Sonidos" type="Node" parent="."]
 
 [node name="Dano" type="AudioStreamPlayer" parent="Sonidos"]
-stream = ExtResource( 26 )
+stream = ExtResource( 27 )

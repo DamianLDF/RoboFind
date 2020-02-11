@@ -6,8 +6,7 @@ signal cambia_vida
 var fuerza : float = 20
 var fuerza_salto_max : float = 1200
 var fuerza_salto : float = fuerza_salto_max
-var state_machine
-
+var state_machine : AnimationNodeStateMachinePlayback
 
 enum Tipo { CABEZA, TORSO, COMPLETO }
 
@@ -19,60 +18,45 @@ var invulnerable : bool = false
 
 func _ready() -> void:
 	state_machine = $AnimationTree.get("parameters/playback")
-	
+
+
 func _integrate_forces(state):
 	if not danado:
 		var prox_anim : String = ""
-		if Input.is_action_pressed("game_right"):
-			if puede_acelerar():
-				apply_central_impulse(Vector2.RIGHT * fuerza)
-			if tocando_tierra():
-				if tipo == Tipo.TORSO:
-					prox_anim = "crawl"
-				elif tipo == Tipo.COMPLETO:
-					prox_anim = "camina"
-			call_deferred("face_direction", 1)
-		elif Input.is_action_pressed("game_left"):
-			if puede_acelerar():
-				apply_central_impulse(Vector2.LEFT * fuerza)
-			if tocando_tierra():
-				if tipo == Tipo.TORSO:
-					prox_anim = "crawl"
-				elif tipo == Tipo.COMPLETO:
-					prox_anim = "camina"
-			call_deferred("face_direction", -1)
-		else:
-			match tipo:
-				Tipo.CABEZA:
-					prox_anim = "cabeza"
-				Tipo.TORSO:
-					prox_anim = "torso"
-				Tipo.COMPLETO:
-					prox_anim = "completo"
-		if Input.is_action_just_pressed("game_jump"):
-			if tipo == Tipo.TORSO or tipo == Tipo.COMPLETO:
+		if state_machine.get_current_node() != "golpe" and \
+				state_machine.get_current_node() != "patada":
+			if Input.is_action_pressed("game_right"):
+				if puede_acelerar():
+					apply_central_impulse(Vector2.RIGHT * fuerza)
 				if tocando_tierra():
-		#		if state.get_contact_count() > 0:
 					if tipo == Tipo.TORSO:
-						apply_central_impulse(Vector2.UP * fuerza_salto)
+						prox_anim = "crawl"
 					elif tipo == Tipo.COMPLETO:
-						apply_central_impulse(Vector2.UP * fuerza_salto)
+						prox_anim = "camina"
+				call_deferred("face_direction", 1)
+			elif Input.is_action_pressed("game_left"):
+				if puede_acelerar():
+					apply_central_impulse(Vector2.LEFT * fuerza)
+				if tocando_tierra():
+					if tipo == Tipo.TORSO:
+						prox_anim = "crawl"
+					elif tipo == Tipo.COMPLETO:
+						prox_anim = "camina"
+				call_deferred("face_direction", -1)
+			if Input.is_action_just_pressed("game_jump"):
+				if tipo == Tipo.TORSO or tipo == Tipo.COMPLETO:
+					if tocando_tierra():
+			#		if state.get_contact_count() > 0:
+						if tipo == Tipo.TORSO:
+							apply_central_impulse(Vector2.UP * fuerza_salto)
+						elif tipo == Tipo.COMPLETO:
+							apply_central_impulse(Vector2.UP * fuerza_salto)
 					
 		if Input.is_action_pressed("game_attack"):
 			if tipo == Tipo.TORSO:
 				prox_anim = "golpe"
-				for body in $Flippables/AtaqueTorso.get_overlapping_bodies():
-#					if body.name.begins_with("Enemigo"):
-						body.fueGolpeado()
-			if tipo == Tipo.COMPLETO:
-				prox_anim = "patada"
-				for body in $Flippables/Patada.get_overlapping_bodies():
-#					if body.name.begins_with("Enemigo"):
-						body.fueGolpeado()
-					
 			elif tipo == Tipo.COMPLETO:
-				pass
-		
+				prox_anim = "patada"
 		if prox_anim != "golpe" and prox_anim != "patada":
 			if not tocando_tierra():
 				if tipo == Tipo.TORSO:
@@ -90,6 +74,13 @@ func _integrate_forces(state):
 					
 		if prox_anim != "":
 			state_machine.travel(prox_anim)
+			
+		if state_machine.get_current_node() == "golpe":
+			for body in $Flippables/AtaqueTorso.get_overlapping_bodies():
+				body.fueGolpeado()
+		if state_machine.get_current_node() == "patada":
+			for body in $Flippables/Patada.get_overlapping_bodies():
+				body.fueGolpeado()
 		
 		if Input.is_action_just_pressed("test_cabeza"):
 			state_machine.travel("cabeza")
@@ -184,6 +175,12 @@ func fueGolpeado():
 			state_machine.travel("dano")
 		
 		if global.vida == 0:
+			if tipo == Tipo.CABEZA:
+				$Flippables/Explosion.visible = true
+			elif tipo == Tipo.TORSO:
+				state_machine.travel("torsoexplota")
+			elif tipo == Tipo.COMPLETO:
+				state_machine.travel("explota")
 			yield(get_tree().create_timer(2),"timeout")
 			get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
 		else:
