@@ -35,6 +35,7 @@ func _on_BossArea_body_entered(body):
 	$PeleaJefe.play()
 	$HUD.mostrar_jefe()
 	$BossAreaEntrance.call_deferred("queue_free")
+	$EnemigoFinal.aparecer()
 
 
 func _on_EnemigoFinal_cambia_vida(vida:int, vida_max:int)->void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://img/cabeza.png" type="Texture" id=2]
@@ -12,7 +12,16 @@ bg_color = Color( 0.0941176, 0.0745098, 0.192157, 1 )
 
 [sub_resource type="BitmapFont" id=3]
 
-[sub_resource type="BitmapFont" id=4]
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://digital-7.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 4 )
+
+[sub_resource type="BitmapFont" id=6]
 
 [node name="HUD" type="CanvasLayer"]
 pause_mode = 2
@@ -30,7 +39,7 @@ texture = ExtResource( 2 )
 show_behind_parent = true
 margin_left = 80.0
 margin_top = 19.0
-margin_right = 978.0
+margin_right = 880.0
 margin_bottom = 57.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
@@ -38,6 +47,16 @@ custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_shadow = Color( 0.494118, 0.25098, 0.25098, 1 )
 value = 50.0
 rounded = true
+
+[node name="Timer" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -127.078
+margin_top = 26.2161
+margin_right = -19.0776
+margin_bottom = 59.2161
+custom_fonts/font = SubResource( 5 )
+text = "99:99.999"
 
 [node name="Jefe" type="MarginContainer" parent="."]
 visible = false
@@ -60,7 +79,7 @@ margin_right = 962.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 
 [node name="Icono" type="TextureRect" parent="Jefe/HSplitContainer"]
 margin_left = 974.0

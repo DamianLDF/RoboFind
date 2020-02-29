@@ -7,6 +7,8 @@ func _ready():
 
 func _on_WinArea_body_entered(body):
 	if body.name == "Player":
+		if $Enemigos.get_child_count() > 0:
+			global.asesino = false
 		global.nivel = 2
 		get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
 

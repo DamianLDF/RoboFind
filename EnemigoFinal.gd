@@ -71,6 +71,10 @@ func fueGolpeado() -> void:
 		if vida <= 0:
 			muerto = true
 			atacarTiming.stop()
+			$Steps.stop()
+			$Steps2.stop()
+			$Steps3.stop()
+			$Explosion.play()
 			set_collision_layer_bit(3, false)
 			$Node2D/Sprite.play("muere")
 			yield(get_tree().create_timer(5),"timeout")
@@ -80,6 +84,13 @@ func fueGolpeado() -> void:
 		yield(get_tree().create_timer(1),"timeout")
 		atacado = false
 
+
+func aparecer() -> void:
+	$Steps.play()
+	yield(get_tree().create_timer(.4),"timeout")
+	$Steps2.play()
+	yield(get_tree().create_timer(.4),"timeout")
+	$Steps3.play()
 
 func _on_AreaAgarre_body_entered(body):
 	# Agarrar items: hacerlos desaparecer

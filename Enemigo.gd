@@ -19,6 +19,12 @@ var exploded:bool = false
 
 func _ready():
 	$Node2D/SpriteExplosion.hide()
+	yield(get_tree().create_timer(randf()), "timeout")
+	$Node2D/Pasos.play()
+	yield(get_tree().create_timer(.2), "timeout")
+	$Node2D/Pasos2.play()
+	yield(get_tree().create_timer(.2), "timeout")
+	$Node2D/Pasos3.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -45,16 +51,18 @@ func _process(delta):
 		else:
 			$Node2D/Sprite.set_animation(textura_normal)
 	
-	if not exploded:
-		for body in  $Node2D/AreaDeAtaque.get_overlapping_bodies():
-			body.fueGolpeado()
+	for body in  $Node2D/AreaDeAtaque.get_overlapping_bodies():
+		body.fueGolpeado()
 
 
 func fueGolpeado():
 	exploded = true
+	set_process(false)
+	mass = .1
 	$Node2D/SpriteExplosion.show()
 	$Node2D/SonidoExplosion.play()
 	yield(get_tree().create_timer(0.5), "timeout")
+	global.pacifico = false
 	call_deferred("queue_free")
 	emit_signal("murio")
 

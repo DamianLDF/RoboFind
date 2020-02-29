@@ -1,13 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Nivel1.gd" type="Script" id=1]
 [ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Enemigo.tscn" type="PackedScene" id=6]
-[ext_resource path="res://TorsoPowerUp.tscn" type="PackedScene" id=7]
-[ext_resource path="res://ROBOFIND audios/Ambiente X3.ogg" type="AudioStream" id=8]
+[ext_resource path="res://TorsoPowerUp.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ROBOFIND audios/Ambiente X3.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Enemigo.tscn" type="PackedScene" id=8]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 206.431, 89.4685 )
@@ -28,15 +30,15 @@ tile_data = PoolIntArray( -196620, -2147483648, 0, -196619, -2147483648, 0, -196
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 110.615, -65.0858 )
-mode = 0
 
-[node name="Enemigo" parent="." instance=ExtResource( 6 )]
-position = Vector2( 10383.3, 1563.8 )
+[node name="Camera2D" parent="Player" index="4"]
+limit_left = -150
+limit_top = 0
 
-[node name="Enemigo2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 12439.5, 1728.17 )
+[node name="AnimationTree" parent="Player" index="6"]
+parameters/playback = SubResource( 2 )
 
-[node name="TorsoPowerUp" parent="." instance=ExtResource( 7 )]
+[node name="TorsoPowerUp" parent="." instance=ExtResource( 6 )]
 position = Vector2( 13950.9, 1653.67 )
 
 [node name="WinArea" type="Area2D" parent="."]
@@ -48,8 +50,18 @@ position = Vector2( 341.136, -7.93335 )
 shape = SubResource( 1 )
 
 [node name="Ambiente" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 7 )
 autoplay = true
+
+[node name="Enemigos" type="Node2D" parent="."]
+
+[node name="Enemigo" parent="Enemigos" instance=ExtResource( 8 )]
+position = Vector2( 10383.3, 1563.8 )
+
+[node name="Enemigo2" parent="Enemigos" instance=ExtResource( 8 )]
+position = Vector2( 12439.5, 1728.17 )
 [connection signal="cambia_vida" from="Player" to="." method="_on_Player_cambia_vida"]
 [connection signal="zoom_changed" from="Player" to="." method="_on_Player_zoom_changed"]
 [connection signal="body_entered" from="WinArea" to="." method="_on_WinArea_body_entered"]
+
+[editable path="Player"]

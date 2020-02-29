@@ -12,7 +12,8 @@ func _input(event) -> void:
 
 func _on_Play_button_down():
 	global.nivel = 1
-	get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
+	global.iniciar_tiempo()
+	get_tree().call_deferred("change_scene", "res://Intro.tscn")
 
 
 func _on_Exit_button_down():

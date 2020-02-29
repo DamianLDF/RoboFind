@@ -1,19 +1,20 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Enemigo.gd" type="Script" id=1]
-[ext_resource path="res://img/enemigo_terrestre2.png" type="Texture" id=2]
-[ext_resource path="res://img/enemigo_terrestre2ataque.png" type="Texture" id=3]
-[ext_resource path="res://img/explosion.png" type="Texture" id=4]
-[ext_resource path="res://ROBOFIND audios/explosion.ogg" type="AudioStream" id=5]
+[ext_resource path="res://ROBOFIND audios/Robot_Footstep_Metallic_Large_03.ogg" type="AudioStream" id=2]
+[ext_resource path="res://img/enemigo_terrestre2.png" type="Texture" id=3]
+[ext_resource path="res://img/enemigo_terrestre2ataque.png" type="Texture" id=4]
+[ext_resource path="res://img/explosion.png" type="Texture" id=5]
+[ext_resource path="res://ROBOFIND audios/explosion.ogg" type="AudioStream" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "normal",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "ataque",
 "speed": 5.0
@@ -46,6 +47,21 @@ script = ExtResource( 1 )
 
 [node name="Node2D" type="Node2D" parent="."]
 
+[node name="Pasos" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource( 2 )
+volume_db = -15.0
+pitch_scale = 2.0
+
+[node name="Pasos2" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource( 2 )
+volume_db = -15.0
+pitch_scale = 2.0
+
+[node name="Pasos3" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource( 2 )
+volume_db = -15.0
+pitch_scale = 2.0
+
 [node name="Sprite" type="AnimatedSprite" parent="Node2D"]
 position = Vector2( -0.439941, 10.3646 )
 scale = Vector2( 0.616749, 0.594524 )
@@ -57,7 +73,7 @@ playing = true
 visible = false
 position = Vector2( -15.5127, -43.7675 )
 scale = Vector2( 0.385387, 0.395486 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="ChequeoDeBorde" type="RayCast2D" parent="Node2D"]
 position = Vector2( -94.7369, 53.6843 )
@@ -106,7 +122,7 @@ position = Vector2( -15.3079, 70.5278 )
 shape = SubResource( 5 )
 
 [node name="SonidoExplosion" type="AudioStreamPlayer" parent="Node2D"]
-stream = ExtResource( 5 )
+stream = ExtResource( 6 )
 
 [node name="ColisicionCuerpo" type="CollisionShape2D" parent="."]
 position = Vector2( 0.257569, 3.31531 )

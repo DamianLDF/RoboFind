@@ -12,12 +12,24 @@ enum Tipo { CABEZA, TORSO, COMPLETO }
 
 var tipo: int = Tipo.CABEZA
 
+var arrastra_timer : Timer = Timer.new()
+var camina_timer : Timer = Timer.new()
 var danado : bool = false
 var invulnerable : bool = false
 
 
 func _ready() -> void:
 	state_machine = $AnimationTree.get("parameters/playback")
+	arrastra_timer.connect("timeout", self, "sonido_camina")
+	arrastra_timer.wait_time = .3
+	add_child(arrastra_timer)
+	camina_timer.connect("timeout", self, "sonido_camina")
+	camina_timer.wait_time = .6
+	add_child(camina_timer)
+	
+	
+func sonido_camina():
+	$Sonidos/Camina.play(0)
 
 
 func _integrate_forces(state):
@@ -31,8 +43,21 @@ func _integrate_forces(state):
 				if tocando_tierra():
 					if tipo == Tipo.TORSO:
 						prox_anim = "crawl"
+						if arrastra_timer.is_stopped():
+							arrastra_timer.start()
+							$Sonidos/Camina.play()
 					elif tipo == Tipo.COMPLETO:
 						prox_anim = "camina"
+						if camina_timer.is_stopped():
+							camina_timer.start()
+							$Sonidos/Camina.play()
+				else:
+					if not arrastra_timer.is_stopped():
+						arrastra_timer.stop()
+						$Sonidos/Camina.stop()
+					if not camina_timer.is_stopped():
+						camina_timer.stop()
+						$Sonidos/Camina.stop()
 				call_deferred("face_direction", 1)
 			elif Input.is_action_pressed("game_left"):
 				if puede_acelerar():
@@ -40,9 +65,33 @@ func _integrate_forces(state):
 				if tocando_tierra():
 					if tipo == Tipo.TORSO:
 						prox_anim = "crawl"
+						if arrastra_timer.is_stopped():
+							arrastra_timer.start()
+							$Sonidos/Camina.play()
 					elif tipo == Tipo.COMPLETO:
 						prox_anim = "camina"
+						if camina_timer.is_stopped():
+							camina_timer.start()
+							$Sonidos/Camina.play()
+
+				else:
+					if not arrastra_timer.is_stopped():
+						arrastra_timer.stop()
+						$Sonidos/Camina.stop()
+					if not camina_timer.is_stopped():
+						camina_timer.stop()
+						$Sonidos/Camina.stop()
+
 				call_deferred("face_direction", -1)
+			else:
+				if not arrastra_timer.is_stopped():
+					arrastra_timer.stop()
+					$Sonidos/Camina.stop()
+				if not camina_timer.is_stopped():
+					camina_timer.stop()
+					$Sonidos/Camina.stop()
+
+
 			if Input.is_action_just_pressed("game_jump"):
 				if tipo == Tipo.TORSO or tipo == Tipo.COMPLETO:
 					if tocando_tierra():
@@ -138,16 +187,19 @@ func ajustar_zoom():
 		$Camera2D.zoom = Vector2(1,1)
 	
 func dar_torso():
+	$Sonidos/PowerUp.play()
 	tipo = Tipo.TORSO
 	fuerza_salto = fuerza_salto_max / 3
 	state_machine.travel("torso")
 	global.cambiar_vida(6)
+	rotation = 0
 	emit_signal("cambia_vida")
 	emit_signal("zoom_changed", Vector2(1.5, 1.5))
 	call_deferred("estabilizar")
 	
 	
 func dar_cuerpo():
+	$Sonidos/PowerUp.play()
 	tipo = Tipo.COMPLETO
 	fuerza_salto = fuerza_salto_max / 5 * 3
 	state_machine.travel("completo")
@@ -166,6 +218,7 @@ func fueGolpeado():
 	if not invulnerable:
 		invulnerable = true
 		danado = true
+		global.perfecto = false
 #		$Sonidos/Dano.play()
 		global.restar_vida()
 		emit_signal("cambia_vida")
@@ -175,6 +228,7 @@ func fueGolpeado():
 			state_machine.travel("dano")
 		
 		if global.vida == 0:
+			$Sonidos/Explosion.play()
 			if tipo == Tipo.CABEZA:
 				$Flippables/Explosion.visible = true
 			elif tipo == Tipo.TORSO:
@@ -184,6 +238,7 @@ func fueGolpeado():
 			yield(get_tree().create_timer(2),"timeout")
 			get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
 		else:
+			$Sonidos/Dano.play()
 			yield(get_tree().create_timer(.5),"timeout")
 		
 		if tipo == Tipo.TORSO:

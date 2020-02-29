@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://EnemigoFinal.gd" type="Script" id=1]
 [ext_resource path="res://img/Minstruo MOV1.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://img/Monstruo M8.png" type="Texture" id=11]
 [ext_resource path="res://img/Monstruo M10.png" type="Texture" id=12]
 [ext_resource path="res://img/Monstruo M9.png" type="Texture" id=13]
+[ext_resource path="res://ROBOFIND audios/Robot_Footstep_Metallic_Large_03.ogg" type="AudioStream" id=14]
+[ext_resource path="res://ROBOFIND audios/explosion.wav" type="AudioStream" id=15]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 236.079
@@ -58,6 +60,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Node2D" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="ChequeoDePared" type="RayCast2D" parent="Node2D"]
 position = Vector2( -273.001, -254.851 )
@@ -75,6 +78,7 @@ position = Vector2( -19.6459, 1.36041 )
 scale = Vector2( 0.999484, 1 )
 frames = SubResource( 2 )
 animation = "caminar"
+frame = 1
 playing = true
 
 [node name="AreaAgarre" type="Area2D" parent="Node2D"]
@@ -100,4 +104,16 @@ position = Vector2( -310.331, -47.9657 )
 position = Vector2( -2.27826, 349.884 )
 rotation = -1.57079
 shape = SubResource( 5 )
+
+[node name="Steps" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 14 )
+
+[node name="Steps2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 14 )
+
+[node name="Steps3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 14 )
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
 [connection signal="body_entered" from="Node2D/AreaAgarre" to="." method="_on_AreaAgarre_body_entered"]

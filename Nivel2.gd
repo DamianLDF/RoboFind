@@ -9,9 +9,9 @@ func crearDisparo(laser):
 func _ready():
 	$HUD.actualizar()
 	$ParallaxBackground.modulate_color(Color(0,0,0))
-	var numero = $Node2D.get_child_count()
+	var numero = $Enemigos.get_child_count()
 	for i in range(numero):
-		$Node2D.get_child(i).connect("dispare", self, "crearDisparo")
+		$Enemigos.get_child(i).connect("dispare", self, "crearDisparo")
 	fade_in_timer.connect("timeout", self, "fade_in")
 	fade_in_timer.wait_time = 0.1
 	add_child(fade_in_timer)
@@ -33,6 +33,8 @@ func _on_Player_zoom_changed(zoom : Vector2):
 
 func _on_WinArea_body_entered(body):
 	if body.name == "Player":
+		if $Enemigos.get_child_count() > 0:
+			global.asesino = false
 		global.nivel = 3
 		get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
 
