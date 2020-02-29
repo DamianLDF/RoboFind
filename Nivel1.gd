@@ -3,6 +3,7 @@ extends Node2D
 func _ready():
 	global.vida = 3
 	global.max_vida = 3
+	global.iniciar_tiempo()
 	$HUD.actualizar()
 
 func _on_WinArea_body_entered(body):
@@ -11,7 +12,6 @@ func _on_WinArea_body_entered(body):
 			global.asesino = false
 		global.nivel = 2
 		get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
-
 
 
 func _on_Player_cambia_vida():

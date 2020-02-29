@@ -12,6 +12,7 @@ enum Tipo { CABEZA, TORSO, COMPLETO }
 
 var tipo: int = Tipo.CABEZA
 
+var puede_volar : bool = false
 var arrastra_timer : Timer = Timer.new()
 var camina_timer : Timer = Timer.new()
 var danado : bool = false
@@ -100,6 +101,9 @@ func _integrate_forces(state):
 							apply_central_impulse(Vector2.UP * fuerza_salto)
 						elif tipo == Tipo.COMPLETO:
 							apply_central_impulse(Vector2.UP * fuerza_salto)
+			if Input.is_action_pressed("game_jump") and puede_volar:
+				if linear_velocity.y > -900:
+					apply_central_impulse(Vector2.UP * 100)
 					
 		if Input.is_action_pressed("game_attack"):
 			if tipo == Tipo.TORSO:
@@ -209,6 +213,12 @@ func dar_cuerpo():
 	call_deferred("estabilizar")
 
 
+func dar_alas():
+	puede_volar = true
+	$Flippables/Alas.set_visible(true)
+	emit_signal("alas")
+
+
 func estabilizar()->void:
 	self.rotation = 0
 	self.angular_velocity = 0
@@ -228,6 +238,7 @@ func fueGolpeado():
 			state_machine.travel("dano")
 		
 		if global.vida == 0:
+			$Flippables/Alas.set_visible(false)
 			$Sonidos/Explosion.play()
 			if tipo == Tipo.CABEZA:
 				$Flippables/Explosion.visible = true

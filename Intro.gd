@@ -34,7 +34,6 @@ func _ready():
 	basura.start()
 	
 	yield(get_tree().create_timer(12), "timeout")
-	global.iniciar_tiempo()
 	get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
 
 

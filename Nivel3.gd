@@ -43,6 +43,18 @@ func _on_EnemigoFinal_cambia_vida(vida:int, vida_max:int)->void:
 
 
 func _on_EnemigoFinal_muere():
+	$PeleaJefe.stop()
+	$ExitArrows.set_visible(true)
+	var alasScene = load("res://AlasPowerUp.tscn")
+	var alas : RigidBody2D = alasScene.instance()
+	alas.position = $EnemigoFinal.position
+	yield(get_tree().create_timer(1.5),"timeout")
+	add_child(alas)
+	alas.apply_torque_impulse(randf() * PI * 2)
+	alas.apply_impulse(Vector2(randf()-.5, randf()-.5).normalized() * 50, \
+						Vector2(randf()-.5, randf()-0.5).normalized() * 150)
+
+
+func _on_WinArea_body_entered(body):
 	global.nivel = 4
 	get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
-

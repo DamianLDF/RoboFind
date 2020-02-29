@@ -6,6 +6,7 @@ var vida: int = 3
 var max_vida: int = 3 
 
 var tiempo_inicio : int
+var tiempo_iniciado : bool = false
 
 var pacifico : bool
 var perfecto : bool
@@ -25,10 +26,12 @@ func cambiar_vida(nueva : int):
 
 
 func iniciar_tiempo() -> void:
-	tiempo_inicio = OS.get_ticks_msec()
-	pacifico = true
-	perfecto = true
-	asesino = true
+	if not tiempo_iniciado:
+		tiempo_iniciado = true
+		tiempo_inicio = OS.get_ticks_msec()
+		pacifico = true
+		perfecto = true
+		asesino = true
 
 
 func tiempo() -> int:

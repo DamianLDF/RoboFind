@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Nivel3.gd" type="Script" id=1]
 [ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=2]
@@ -6,20 +6,21 @@
 [ext_resource path="res://img/luna.png" type="Texture" id=4]
 [ext_resource path="res://Tileset.tres" type="TileSet" id=5]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://EnemigoVolador.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Enemigo.tscn" type="PackedScene" id=9]
-[ext_resource path="res://ROBOFIND audios/Ambiente final.ogg" type="AudioStream" id=10]
-[ext_resource path="res://ROBOFIND audios/Jefe Final V2 bajo.ogg" type="AudioStream" id=11]
-[ext_resource path="res://EnemigoFinal.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Proyectil.tscn" type="PackedScene" id=13]
+[ext_resource path="res://img/flecha.png" type="Texture" id=7]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://EnemigoVolador.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Enemigo.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ROBOFIND audios/Ambiente final.ogg" type="AudioStream" id=11]
+[ext_resource path="res://ROBOFIND audios/Jefe Final V2 bajo.ogg" type="AudioStream" id=12]
+[ext_resource path="res://EnemigoFinal.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Proyectil.tscn" type="PackedScene" id=14]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 253.921, 252.605 )
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 253.921, 252.605 )
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 252.936, 209.69 )
 
 [node name="Nivel3" type="Node2D"]
@@ -51,11 +52,41 @@ tile_data = PoolIntArray( -6357031, -2147483645, 0, -6291503, -2147483645, 0, -6
 
 [node name="HUD" parent="." instance=ExtResource( 6 )]
 
-[node name="Player" parent="." instance=ExtResource( 7 )]
+[node name="ExitArrows" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite" type="Sprite" parent="ExitArrows"]
+position = Vector2( -2715.5, -325.137 )
+texture = ExtResource( 7 )
+
+[node name="Sprite5" type="Sprite" parent="ExitArrows"]
+position = Vector2( -2715.5, 382.774 )
+texture = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="ExitArrows"]
+position = Vector2( -2715.5, -2049.54 )
+texture = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="ExitArrows"]
+position = Vector2( -2715.5, -3263.43 )
+texture = ExtResource( 7 )
+
+[node name="Sprite4" type="Sprite" parent="ExitArrows"]
+position = Vector2( -2715.5, -4111.59 )
+texture = ExtResource( 7 )
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 394.691, 554.001 )
 
 [node name="Flippables" parent="Player" index="0"]
 editor/display_folded = true
+
+[node name="Cabeza" parent="Player/Flippables" index="1"]
+visible = true
+
+[node name="Completo" parent="Player/Flippables" index="3"]
+visible = false
+frame = 0
 
 [node name="Camera2D" parent="Player" index="4"]
 limit_left = -4100
@@ -64,7 +95,7 @@ limit_right = 5060
 limit_bottom = 1000
 
 [node name="AnimationTree" parent="Player" index="6"]
-parameters/playback = SubResource( 3 )
+parameters/playback = SubResource( 1 )
 
 [node name="GroundTouch" parent="Player" index="7"]
 editor/display_folded = true
@@ -74,57 +105,57 @@ editor/display_folded = true
 
 [node name="Enemigos" type="Node2D" parent="."]
 
-[node name="EnemigoVolador" parent="Enemigos" instance=ExtResource( 8 )]
+[node name="EnemigoVolador" parent="Enemigos" instance=ExtResource( 9 )]
 position = Vector2( 1836.63, -1424.54 )
 
-[node name="EnemigoVolador2" parent="Enemigos" instance=ExtResource( 8 )]
-position = Vector2( 1748.97, -2059.6 )
+[node name="EnemigoVolador2" parent="Enemigos" instance=ExtResource( 9 )]
+position = Vector2( 1861.72, -2059.6 )
 
-[node name="EnemigoVolador3" parent="Enemigos" instance=ExtResource( 8 )]
-position = Vector2( 3455.03, -2058.2 )
+[node name="EnemigoVolador3" parent="Enemigos" instance=ExtResource( 9 )]
+position = Vector2( 3482.05, -2058.2 )
 
-[node name="EnemigoVolador4" parent="Enemigos" instance=ExtResource( 8 )]
+[node name="EnemigoVolador4" parent="Enemigos" instance=ExtResource( 9 )]
 position = Vector2( 2995.6, -2906.9 )
 
-[node name="EnemigoVolador5" parent="Enemigos" instance=ExtResource( 8 )]
+[node name="EnemigoVolador5" parent="Enemigos" instance=ExtResource( 9 )]
 position = Vector2( 3391.61, -2902.24 )
 
-[node name="EnemigoVolador7" parent="Enemigos" instance=ExtResource( 8 )]
+[node name="EnemigoVolador7" parent="Enemigos" instance=ExtResource( 9 )]
 position = Vector2( -28.4495, -3687.25 )
 
-[node name="EnemigoVolador6" parent="Enemigos" instance=ExtResource( 8 )]
+[node name="EnemigoVolador6" parent="Enemigos" instance=ExtResource( 9 )]
 position = Vector2( 3755.01, -2902.24 )
 
-[node name="Enemigo5" parent="Enemigos" instance=ExtResource( 9 )]
+[node name="Enemigo5" parent="Enemigos" instance=ExtResource( 10 )]
 position = Vector2( 106.613, -1732.03 )
 
-[node name="Enemigo6" parent="Enemigos" instance=ExtResource( 9 )]
+[node name="Enemigo6" parent="Enemigos" instance=ExtResource( 10 )]
 position = Vector2( 1712.03, -3321.07 )
 
-[node name="Enemigo7" parent="Enemigos" instance=ExtResource( 9 )]
+[node name="Enemigo7" parent="Enemigos" instance=ExtResource( 10 )]
 position = Vector2( 2236.25, -3312.88 )
 
-[node name="Enemigo8" parent="Enemigos" instance=ExtResource( 9 )]
+[node name="Enemigo8" parent="Enemigos" instance=ExtResource( 10 )]
 position = Vector2( 1886.09, -3865.36 )
 
-[node name="Enemigo3" parent="Enemigos" instance=ExtResource( 9 )]
+[node name="Enemigo3" parent="Enemigos" instance=ExtResource( 10 )]
 position = Vector2( 2580.54, -744.327 )
 
-[node name="Enemigo4" parent="Enemigos" instance=ExtResource( 9 )]
+[node name="Enemigo4" parent="Enemigos" instance=ExtResource( 10 )]
 position = Vector2( 4220.51, -930.687 )
 
-[node name="Enemigo" parent="Enemigos" instance=ExtResource( 9 )]
+[node name="Enemigo" parent="Enemigos" instance=ExtResource( 10 )]
 position = Vector2( -3148.61, 541.111 )
 
-[node name="Enemigo2" parent="Enemigos" instance=ExtResource( 9 )]
+[node name="Enemigo2" parent="Enemigos" instance=ExtResource( 10 )]
 position = Vector2( -1335.42, 518.794 )
 
 [node name="Ambiente" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 autoplay = true
 
 [node name="PeleaJefe" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 
 [node name="BossAreaEntrance" type="Area2D" parent="."]
 editor/display_folded = true
@@ -133,152 +164,153 @@ collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossAreaEntrance"]
 position = Vector2( -11.4402, 11.4401 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
-[node name="EnemigoFinal" parent="." instance=ExtResource( 12 )]
+[node name="EnemigoFinal" parent="." instance=ExtResource( 13 )]
 position = Vector2( -1900.03, 256.743 )
 
 [node name="Proyectiles" type="Node2D" parent="."]
+editor/display_folded = true
 
-[node name="Proyectil" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 471.374, -797.152 )
 
-[node name="Proyectil2" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil2" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 529.114, -966.754 )
 
-[node name="Proyectil45" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil45" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2314.69, -698.815 )
 
-[node name="Proyectil46" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil46" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2314.69, -782.5 )
 
-[node name="Proyectil47" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil47" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2423.48, -696.026 )
 
-[node name="Proyectil3" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil3" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 599.757, -814.601 )
 
-[node name="Proyectil4" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil4" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 1110.56, 560.208 )
 
-[node name="Proyectil5" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil5" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 904.062, 603.68 )
 
-[node name="Proyectil43" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil43" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -1299.28, 923.124 )
 
-[node name="Proyectil6" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil6" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2621.22, 598.246 )
 
-[node name="Proyectil7" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil7" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2729.9, 516.736 )
 
-[node name="Proyectil44" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil44" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 5063.1, 674.921 )
 
-[node name="Proyectil8" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil8" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2887.48, 196.128 )
 
-[node name="Proyectil9" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil9" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2784.24, 239.6 )
 
-[node name="Proyectil10" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil10" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 1306.18, -86.4412 )
 
-[node name="Proyectil11" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil11" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 1202.93, -48.403 )
 
-[node name="Proyectil12" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil12" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2479.93, -1700.35 )
 
-[node name="Proyectil13" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil13" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2392.99, -1684.05 )
 
-[node name="Proyectil14" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil14" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2306.04, -1711.22 )
 
-[node name="Proyectil15" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil15" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2344.08, -1814.46 )
 
-[node name="Proyectil16" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil16" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2425.59, -1803.59 )
 
-[node name="Proyectil17" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil17" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2376.68, -1901.41 )
 
-[node name="Proyectil18" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil18" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 1980, -2477.41 )
 
-[node name="Proyectil19" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil19" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 1903.92, -2477.41 )
 
-[node name="Proyectil20" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil20" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 1806.11, -2482.85 )
 
-[node name="Proyectil21" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil21" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 1860.45, -2575.23 )
 
-[node name="Proyectil22" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil22" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 1925.66, -2575.23 )
 
-[node name="Proyectil23" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil23" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 1887.62, -2667.61 )
 
-[node name="Proyectil24" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil24" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 1577.88, -2439.38 )
 
-[node name="Proyectil25" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil25" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( 2213.66, -2455.68 )
 
-[node name="Proyectil26" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil26" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -2429.72, -1981.4 )
 
-[node name="Proyectil27" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil27" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -2317.36, -1974.37 )
 
-[node name="Proyectil42" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil42" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -4058.63, -546.666 )
 
-[node name="Proyectil37" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil37" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -1531.08, -1999.6 )
 
-[node name="Proyectil38" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil38" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -1425.96, -1986.98 )
 
-[node name="Proyectil39" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil39" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -1346.07, -1991.19 )
 
-[node name="Proyectil40" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil40" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -1383.91, -2062.67 )
 
-[node name="Proyectil41" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil41" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -1472.21, -2071.08 )
 
-[node name="Proyectil28" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil28" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -2408.65, -3256.35 )
 
-[node name="Proyectil29" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil29" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -2036.45, -3291.46 )
 
-[node name="Proyectil31" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil31" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -2022.47, -3389.3 )
 
-[node name="Proyectil32" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil32" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -2022.47, -3482.48 )
 
-[node name="Proyectil33" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil33" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -1947.93, -3300.78 )
 
-[node name="Proyectil34" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil34" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -2138.95, -3277.48 )
 
-[node name="Proyectil35" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil35" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -2101.68, -3375.32 )
 
-[node name="Proyectil36" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil36" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -1952.59, -3375.32 )
 
-[node name="Proyectil30" parent="Proyectiles" instance=ExtResource( 13 )]
+[node name="Proyectil30" parent="Proyectiles" instance=ExtResource( 14 )]
 position = Vector2( -1741.49, -3277.42 )
 
 [node name="WinArea" type="Area2D" parent="."]
@@ -287,15 +319,13 @@ collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WinArea"]
 position = Vector2( 17.4028, -12.8743 )
-shape = SubResource( 2 )
-
-[node name="ExitArrows" type="Node2D" parent="."]
-visible = false
+shape = SubResource( 3 )
 [connection signal="cambia_vida" from="Player" to="." method="_on_Player_cambia_vida"]
 [connection signal="body_entered" from="BossAreaEntrance" to="." method="_on_BossArea_body_entered"]
 [connection signal="cambia_vida" from="EnemigoFinal" to="." method="_on_EnemigoFinal_cambia_vida"]
 [connection signal="dispare" from="EnemigoFinal" to="." method="crearDisparo"]
 [connection signal="muere" from="EnemigoFinal" to="." method="_on_EnemigoFinal_muere"]
+[connection signal="body_entered" from="WinArea" to="." method="_on_WinArea_body_entered"]
 
 [editable path="ParallaxBackground"]
 

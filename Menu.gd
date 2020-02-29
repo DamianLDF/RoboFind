@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	pass
+	global.tiempo_iniciado = false
 
 
 func _input(event) -> void:
@@ -12,7 +12,6 @@ func _input(event) -> void:
 
 func _on_Play_button_down():
 	global.nivel = 1
-	global.iniciar_tiempo()
 	get_tree().call_deferred("change_scene", "res://Intro.tscn")
 
 

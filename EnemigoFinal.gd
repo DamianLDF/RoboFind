@@ -77,7 +77,7 @@ func fueGolpeado() -> void:
 			$Explosion.play()
 			set_collision_layer_bit(3, false)
 			$Node2D/Sprite.play("muere")
-			yield(get_tree().create_timer(5),"timeout")
+#			yield(get_tree().create_timer(5),"timeout")
 			emit_signal("muere")
 			return
 		cambiar_direccion()
