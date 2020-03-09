@@ -11,12 +11,12 @@
 [ext_resource path="res://EnemigoVolador.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ROBOFIND audios/Ambiente X3.ogg" type="AudioStream" id=10]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 290.992, 168.854 )
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 290.992, 168.854 )
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 200, 200 )
 
 [node name="Nivel2" type="Node2D"]
@@ -51,12 +51,18 @@ position = Vector2( -131.733, 607.645 )
 [node name="Flippables" parent="Player" index="0"]
 editor/display_folded = true
 
+[node name="Cabeza" parent="Player/Flippables" index="1"]
+visible = true
+
+[node name="Completo" parent="Player/Flippables" index="3"]
+visible = false
+
 [node name="Camera2D" parent="Player" index="4"]
 limit_left = -777
 limit_top = -270
 
 [node name="AnimationTree" parent="Player" index="6"]
-parameters/playback = SubResource( 3 )
+parameters/playback = SubResource( 1 )
 
 [node name="PiernasPowerUp" parent="." instance=ExtResource( 7 )]
 position = Vector2( 8257.02, 750.058 )
@@ -112,7 +118,7 @@ position = Vector2( 9488.91, 410.521 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WinArea"]
 position = Vector2( 366.586, -87.3505 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( -809.946, 539.647 )
@@ -122,7 +128,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 [connection signal="cambia_vida" from="Player" to="." method="_on_Player_cambia_vida"]
 [connection signal="zoom_changed" from="Player" to="." method="_on_Player_zoom_changed"]
 [connection signal="body_entered" from="WinArea" to="." method="_on_WinArea_body_entered"]

@@ -69,7 +69,7 @@ func fueGolpeado():
 	$Node2D/SpriteExplosion.show()
 	yield(get_tree().create_timer(0.2), "timeout")
 	self.queue_free()
-	global.pacifico = false
+	global.pacifista = false
 	emit_signal("murio")
 
 func _on_Area2D_body_entered(body):

@@ -62,7 +62,7 @@ func fueGolpeado():
 	$Node2D/SpriteExplosion.show()
 	$Node2D/SonidoExplosion.play()
 	yield(get_tree().create_timer(0.5), "timeout")
-	global.pacifico = false
+	global.pacifista = false
 	call_deferred("queue_free")
 	emit_signal("murio")
 

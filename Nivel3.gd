@@ -57,4 +57,5 @@ func _on_EnemigoFinal_muere():
 
 func _on_WinArea_body_entered(body):
 	global.nivel = 4
-	get_tree().call_deferred("change_scene", "res://IntroNivel.tscn")
+	global.terminar_tiempo()
+	get_tree().call_deferred("change_scene", "res://Ending.tscn")

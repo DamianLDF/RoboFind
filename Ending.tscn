@@ -1,0 +1,163 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Ending.gd" type="Script" id=1]
+[ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=2]
+[ext_resource path="res://img/luna.png" type="Texture" id=3]
+[ext_resource path="res://img/alas.png" type="Texture" id=4]
+[ext_resource path="res://img/jump.png" type="Texture" id=5]
+[ext_resource path="res://ROBOFIND audios/moon 243.ogg" type="AudioStream" id=6]
+[ext_resource path="res://digital-7.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://img/badges.png" type="Texture" id=8]
+[ext_resource path="res://img/killer.png" type="Texture" id=9]
+[ext_resource path="res://img/runner.png" type="Texture" id=10]
+[ext_resource path="res://img/pacific.png" type="Texture" id=11]
+[ext_resource path="res://img/perfect.png" type="Texture" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+font_data = ExtResource( 7 )
+
+[node name="Ending" type="Node2D"]
+modulate = Color( 0, 0, 0, 1 )
+script = ExtResource( 1 )
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 2 )]
+
+[node name="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
+scale = Vector2( 1, 2 )
+offset = Vector2( 512, 150 )
+
+[node name="Luna" type="Sprite" parent="."]
+position = Vector2( 15300, 282.57 )
+texture = ExtResource( 3 )
+
+[node name="Robot" type="Node2D" parent="."]
+position = Vector2( -224.808, 243.657 )
+rotation = 0.329677
+scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Alas" type="Sprite" parent="Robot"]
+texture = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="Robot/Alas"]
+rotation = 0.5358
+offset = Vector2( 450, 0 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 15500
+
+[node name="Sprite2" type="Sprite" parent="Robot"]
+position = Vector2( 111.581, 159.002 )
+texture = ExtResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Texto" type="Label" parent="CanvasLayer"]
+margin_left = 282.824
+margin_top = 900.0
+margin_right = 1016.82
+margin_bottom = 2266.0
+custom_fonts/font = SubResource( 1 )
+text = "¡Ganaste!
+
+Felicitaciones!
+
+
+
+
+Robofind
+
+
+Creado para la 
+
+Global Game Jam 2020
+
+
+
+
+
+Equipo
+
+Mauricio Luca Cabrera
+
+Leandro Damian Fernandez
+
+Agustin Bortman
+
+Facundo Yuffrida
+
+
+
+
+
+
+
+
+
+
+¡Gracias por jugar!"
+align = 1
+
+[node name="Logros" type="CanvasLayer" parent="."]
+
+[node name="Tiempo" type="Label" parent="Logros"]
+margin_left = 550.0
+margin_top = 275.0
+margin_right = 724.0
+margin_bottom = 309.0
+custom_fonts/font = SubResource( 2 )
+text = "Tiempo: "
+
+[node name="Asesino" type="Sprite" parent="Logros"]
+editor/display_folded = true
+visible = false
+position = Vector2( 600, 140 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="Logros/Asesino"]
+texture = ExtResource( 9 )
+
+[node name="Rapido" type="Sprite" parent="Logros"]
+editor/display_folded = true
+visible = false
+position = Vector2( 900, 140 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="Logros/Rapido"]
+texture = ExtResource( 10 )
+
+[node name="Pacifista" type="Sprite" parent="Logros"]
+editor/display_folded = true
+visible = false
+position = Vector2( 600, 450 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="Logros/Pacifista"]
+texture = ExtResource( 11 )
+
+[node name="Perfecto" type="Sprite" parent="Logros"]
+editor/display_folded = true
+visible = false
+position = Vector2( 900, 450 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="Logros/Perfecto"]
+texture = ExtResource( 12 )
+
+[editable path="ParallaxBackground"]
