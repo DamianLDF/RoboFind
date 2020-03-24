@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var fade_in_timer = Timer.new()
-
+onready var fade_out_timer = Timer.new()
 
 func _ready():
 #	modulate_color(Color(0,0,0))
@@ -22,12 +22,20 @@ func _ready():
 	fade_in_timer.wait_time = 0.1
 	add_child(fade_in_timer)
 	fade_in_timer.start()
+	
+	fade_out_timer.connect("timeout", self, "fade_out")
+	fade_out_timer.wait_time = 0.1
+	add_child(fade_out_timer)
+	
 	yield(get_tree().create_timer(4), "timeout")
 	$Logros/Tiempo.set_visible(false)
 	$Logros/Asesino.set_visible(false)
 	$Logros/Rapido.set_visible(false)
 	$Logros/Pacifista.set_visible(false)
 	$Logros/Perfecto.set_visible(false)
+	
+	yield(get_tree().create_timer(86), "timeout")
+	fade_out_timer.start()
 
 
 func fade_in():
@@ -35,6 +43,14 @@ func fade_in():
 	$ParallaxBackground.modulate_color(self.modulate)
 	if self.modulate.r >= 1:
 		fade_in_timer.stop()
+
+
+func fade_out():
+	self.modulate = self.modulate - Color(.05, .05, .05, 0)
+	$ParallaxBackground.modulate_color(self.modulate)
+	if self.modulate.r <= 0:
+		fade_out_timer.stop()
+		get_tree().call_deferred("change_scene", "res://Menu.tscn")
 
 
 func _process(delta):

@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var fade_in_timer = Timer.new()
+onready var fade_out_timer = Timer.new()
 
 func crearDisparo(disparo):
 	add_child(disparo)
@@ -15,6 +16,9 @@ func _ready():
 	fade_in_timer.wait_time = 0.1
 	add_child(fade_in_timer)
 	fade_in_timer.start()
+	fade_out_timer.connect("timeout", self, "fade_out")
+	fade_out_timer.wait_time = 0.1
+	add_child(fade_out_timer)
 
 
 func fade_in():
@@ -24,6 +28,17 @@ func fade_in():
 	$ParallaxBackground.modulate_color(self.modulate)
 	if self.modulate.r >= 1:
 		fade_in_timer.stop()
+
+
+func fade_out():
+	self.modulate = self.modulate - Color(.05, .05, .05, 0)
+	$ParallaxBackground.modulate_color(self.modulate)
+	if self.modulate.r <= 0:
+		fade_out_timer.stop()
+		global.nivel = 4
+		global.terminar_tiempo()
+		get_tree().call_deferred("change_scene", "res://Ending.tscn")
+
 
 func _on_Player_cambia_vida():
 	$HUD.actualizar()
@@ -56,6 +71,5 @@ func _on_EnemigoFinal_muere():
 
 
 func _on_WinArea_body_entered(body):
-	global.nivel = 4
-	global.terminar_tiempo()
-	get_tree().call_deferred("change_scene", "res://Ending.tscn")
+	self.modulate = Color(1, 1, 1, 1)
+	fade_out_timer.start()
